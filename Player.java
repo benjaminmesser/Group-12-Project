@@ -7,6 +7,11 @@ public class Player{
     this.yPos = 0;
     // eventually change to automatically put player at the origin, once we find out where that is
   }
+  
+  public Player(Player p){
+    this.xPos = p.getXPos();
+    this.yPos = p.getYPos();
+  }
 
   //setter and getter methods: these only change the stats for the file. Actual movement and such takes place in the board class.
   public int getXPos(){

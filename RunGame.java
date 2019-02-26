@@ -2,9 +2,8 @@ import java.util.Scanner;
 
 public class RunGame {
   // basically just how the game is run
-  private Board b;
   public static void main(String[] args){
-    b = new Board();
+    Board b = new Board();
     Scanner input = new Scanner(System.in);
 
     System.out.println("Welcome to our adventure game");
@@ -14,7 +13,6 @@ public class RunGame {
 	  while (!start){
 		  int startNumber= startIn.nextInt();
 		  if(startNumber==1) {
-			  init();
 			  start = true;
 		  }
 	  }
@@ -40,11 +38,11 @@ public class RunGame {
                    break;
       }
 
-      printBoard();
+      printBoard(b);
     }
   }
 
-  private void printBoard() {
+  private static void printBoard(Board b) {
     char[][] m = b.getMap();
     System.out.println("------------------------------");
     for (int i = 0; i < m.length; i++) {

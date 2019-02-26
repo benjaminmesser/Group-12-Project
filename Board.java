@@ -47,6 +47,7 @@ public class Board{
     }
     updateMap();
   }
+
   public void moveRight(){
     // checks to see if space is free to the right of the player's current position; if so, changes xPos accordingly.
     if (p.getXPos() + 1 <= this.map[0].length){
@@ -56,6 +57,7 @@ public class Board{
     }
     updateMap();
   }
+
   public void moveUpRight(){
     // checks to see if space is free above and to the right of the player's current position; if so, changes xPos accordingly.
     if (p.getXPos() + 1 <= this.map[0].length && p.getYPos() + 1 <= this.map[0].length){
@@ -66,10 +68,11 @@ public class Board{
     }
     updateMap();
   }
+
   public void jump(){
     // checks to see if space is free above the player's current position; if so, changes yPos accordingly.
     if (p.getYPos() + 1 <= this.map[0].length){
-      if (map[p.getXPos()][p.getYPos() + 1] == ' ')
+      if (map[p.getXPos()][p.getYPos() + 1] == ' '){
         p.setYPos(p.getYPos() + 1);
       }
     }

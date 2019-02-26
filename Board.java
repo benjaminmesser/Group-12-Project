@@ -6,14 +6,15 @@ public class Board{
     this.map = createMap();
   }
   
-  public char[][] createMap(){
+   public char[][] createMap(){
 	  //Creates a board that is 5 long and 15 wide
-	  for (int column=0; column<4;column++) {
-	  for (int row= 0; row<14; row++) {
-		  map[row][column]='.';
+	  for (int column=0; column<14;column++) {
+	  for (int row= 0; row<4; row++) {
+		  this.map[row][column]=' ';
+
 		  }
 	  }
-	  System.out.println(map);
+	  System.out.println(map[4]);
 	  return map;
   }
   public void updateMap(){

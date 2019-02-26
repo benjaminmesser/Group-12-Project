@@ -45,7 +45,7 @@ public class RunGame {
 	  printBoard(b);
 	  while (b.getPlayer().getYPos() < b.getMap().length - 1 && b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == ' '){
 	    try {
-          Thread.sleep(2000);
+          Thread.sleep(500);
 	    } catch (InterruptedException ex){
           Thread.currentThread().interrupt();
 	    }
@@ -57,7 +57,7 @@ public class RunGame {
 
   private static void printBoard(Board b) {
     char[][] m = b.getMap();
-    System.out.println("------------------------------");
+    System.out.println("----------------");
     for (int i = 0; i < m.length; i++) {
       String row = "";
       for (int j = 0; j < m[i].length; j++) {
@@ -65,6 +65,6 @@ public class RunGame {
       }
       System.out.println(row);
     }
-    System.out.println("------------------------------");
+    System.out.println("----------------");
   }
 }

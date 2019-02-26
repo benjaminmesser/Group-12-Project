@@ -20,10 +20,12 @@ public class Board{
 
   public void updateMap(){
     // adds all necessary changes to the map, for now just moving the player character. called after moves are made.
+    while (p.getYPos() > 0 && map[p.getXPos()][p.getYPos() - 1] == ' '){
+      p.setYPos(p.getXPos() - 1);
+    }
     int x = p.getXPos();
     int y = p.getYPos();
-
-    this.map[y][x] = '|';
+    this.map[x][y] = '|';
   }
 
   public void moveLeft(){
@@ -86,7 +88,6 @@ public class Board{
         p.setYPos(p.getYPos() - 1);
       }
     }
-    updateMap();
   }
 
   public char[][] getMap(){

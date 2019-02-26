@@ -2,6 +2,11 @@ public class Board{
   private Player p;
   private char[][] map;
 
+  /**
+   * This class stores information on the map where the player is located and facilitates different interactions the player can make
+   * with the environment. It uses instance variables to store information on the player location and the graphical display of the map.
+   * This class has methods to retrieve copies of its instance variables, as well as methods to move the player around the map.
+   */
   public Board(){
     this.p = new Player();
     this.map = createMap();

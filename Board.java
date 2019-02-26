@@ -1,29 +1,17 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Board{
   private Player p;
-  private ArrayList<ArrayList<String>> map;
+  private char[][] map= new char[15][5];
   public Board(){
     this.p = new Player();
     this.map = createMap();
   }
-  public ArrayList<ArrayList<String>> createMap(){
-	  ArrayList<ArrayList<String>> map= new ArrayList<ArrayList<String>>();
-	  ArrayList<String> space= new ArrayList<String>();
-	  ArrayList<String> newLine= new ArrayList<String>();
-	  newLine.add("\n");
-	  //adds row to board
-	  int numOfRows= 5;
-	  //Creates a board that is numOfRows long and i wide
-	  while (numOfRows != 0) {
-	  for (int i= 0; i<=15; i++) {
-		  map.add(space);
-		  if(i == 15) {
-			  map.add(newLine);
+  
+  public char[][] createMap(){
+	  //Creates a board that is 5 long and 15 wide
+	  for (int column=0; column<4;column++) {
+	  for (int row= 0; row<14; row++) {
+		  map[row][column]='.';
 		  }
-	  }
-	  numOfRows-=1;
 	  }
 	  System.out.println(map);
 	  return map;

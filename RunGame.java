@@ -24,7 +24,7 @@ public class RunGame(){
     while (true){
       // essentially: keeps checking for input, calls movement methods (b.moveLeft(), b.moveRight(), etc.) accordingly...
       // basically manages all user interaction stuff here.
-      char command = input.nextLine();
+      char command = input.nextLine().charAt(0);
       
       switch (command) {
         case 'q':  b.moveUpLeft();

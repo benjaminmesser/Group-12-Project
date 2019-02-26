@@ -1,4 +1,4 @@
-public class Board{
+public class Board {
   private Player p;
   private char[][] map;
 
@@ -7,14 +7,14 @@ public class Board{
    * with the environment. It uses instance variables to store information on the player location and the graphical display of the map.
    * This class has methods to retrieve copies of its instance variables, as well as methods to move the player around the map.
    */
-  public Board(){
+  public Board() {
     this.p = new Player();
     this.map = createMap();
   }
 
-  public char[][] createMap(){
+  public char[][] createMap() {
     // draw map here, whoever wants to do that.
-    map = new char[][]{
+    map = new char[][] {
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x'},
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x'},
@@ -24,18 +24,18 @@ public class Board{
     return map;
   }
 
-  public void updateMap(){
+  public void updateMap() {
     // adds all necessary changes to the map, for now just moving the player character. called after moves are made.
     int x = p.getXPos();
     int y = p.getYPos();
     this.map[y][x] = '|';
   }
 
-  public void moveLeft(){
+  public void moveLeft() {
     // checks to see if space is free to the left of the player's current position; if so, changes xPos accordingly.
     // Something like the following: may need to be changed accordingly if setup changes. Similar kind of idea for the other three.
-    if (p.getXPos() - 1 >= 0){
-      if (map[p.getYPos()][p.getXPos() - 1] == ' '){
+    if (p.getXPos() - 1 >= 0) {
+      if (map[p.getYPos()][p.getXPos() - 1] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() - 1);
       }
@@ -43,10 +43,10 @@ public class Board{
     updateMap();
   }
 
-  public void moveUpLeft(){
+  public void moveUpLeft() {
     // checks to see if space is free above and to the left of the player's current position; if so, changes xPos accordingly.
-    if (p.getXPos() - 1 >= 0 && p.getYPos() - 1 >= 0){
-      if (map[p.getYPos() - 1][p.getXPos() - 1] == ' '){
+    if (p.getXPos() - 1 >= 0 && p.getYPos() - 1 >= 0) {
+      if (map[p.getYPos() - 1][p.getXPos() - 1] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() - 1);
         p.setYPos(p.getYPos() - 1);
@@ -55,10 +55,10 @@ public class Board{
     updateMap();
   }
 
-  public void moveRight(){
+  public void moveRight() {
     // checks to see if space is free to the right of the player's current position; if so, changes xPos accordingly.
-    if (p.getXPos() + 1 < map[0].length){
-      if (map[p.getYPos()][p.getXPos() + 1] == ' '){
+    if (p.getXPos() + 1 < map[0].length) {
+      if (map[p.getYPos()][p.getXPos() + 1] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() + 1);
       }
@@ -66,10 +66,10 @@ public class Board{
     updateMap();
   }
 
-  public void moveUpRight(){
+  public void moveUpRight() {
     // checks to see if space is free above and to the right of the player's current position; if so, changes xPos accordingly.
-    if (p.getXPos() + 1 < map[0].length && p.getYPos() - 1 >= 0){
-      if (map[p.getYPos() - 1][p.getXPos() + 1] == ' '){
+    if (p.getXPos() + 1 < map[0].length && p.getYPos() - 1 >= 0) {
+      if (map[p.getYPos() - 1][p.getXPos() + 1] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() + 1);
         p.setYPos(p.getYPos() - 1);
@@ -78,10 +78,10 @@ public class Board{
     updateMap();
   }
 
-  public void jump(){
+  public void jump() {
     // checks to see if space is free above the player's current position; if so, changes yPos accordingly.
-    if (p.getYPos() - 1 >= 0){
-      if (map[p.getYPos() - 1][p.getXPos()] == ' '){
+    if (p.getYPos() - 1 >= 0) {
+      if (map[p.getYPos() - 1][p.getXPos()] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setYPos(p.getYPos() - 1);
       }
@@ -89,29 +89,29 @@ public class Board{
     updateMap();
   }
 
-  public void fall(){
+  public void fall() {
     // checks to see if space is available below the player's current position; if so, changes yPos accordingly.
-    if (p.getYPos() + 1 < map.length){
-      if (map[p.getYPos() + 1][p.getXPos()] == ' '){
+    if (p.getYPos() + 1 < map.length) {
+      if (map[p.getYPos() + 1][p.getXPos()] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setYPos(p.getYPos() + 1);
       }
     }
-	updateMap();
+	  updateMap();
   }
 
-  public char[][] getMap(){
+  public char[][] getMap() {
     //returns a copy of the map.
     char[][] mapClone = new char[map.length][map[0].length];
-    for (int i = 0; i < map.length; i++){
-      for (int j = 0; j < map[0].length; j++){
+    for (int i = 0; i < map.length; i++) {
+      for (int j = 0; j < map[0].length; j++) {
         mapClone[i][j] = map[i][j];
       }
     }
     return mapClone;
   }
-  
-  public Player getPlayer(){
+
+  public Player getPlayer() {
     //returns a copy of the player.
     Player pp = new Player(p);
     return pp;

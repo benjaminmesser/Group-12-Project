@@ -9,22 +9,22 @@ public class RunGame {
    * facilitates the falling of the player if there is an empty space below them. This class also interacts with the user/player and
    * allows for keyboard input to control the movement of the player.
   */
-  public static void main(String[] args){
+  public static void main(String[] args) {
     Board b = new Board();
     Scanner input = new Scanner(System.in);
 
     System.out.println("Welcome to our adventure game");
    	System.out.println("Please enter 1 to start");
 	  boolean start = false;
-	  while (!start){
+	  while (!start) {
 		  int startNumber = Integer.parseInt(input.nextLine());
-		  if(startNumber==1) {
+		  if (startNumber==1) {
 			  start = true;
 		  }
 	  }
     printBoard(b);
 
-    while (true){
+    while (true) {
       // essentially: keeps checking for input, calls movement methods (b.moveLeft(), b.moveRight(), etc.) accordingly...
       // basically manages all user interaction stuff here.
       char command = input.nextLine().charAt(0);
@@ -42,16 +42,16 @@ public class RunGame {
         case 'd':  b.moveRight();
                    break;
       }
-	  printBoard(b);
-	  while (b.getPlayer().getYPos() < b.getMap().length - 1 && b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == ' '){
-	    try {
+	    printBoard(b);
+	    while (b.getPlayer().getYPos() < b.getMap().length - 1 && b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == ' ') {
+	      try {
           Thread.sleep(500);
-	    } catch (InterruptedException ex){
+	      } catch (InterruptedException ex) {
           Thread.currentThread().interrupt();
-	    }
+	      }
         b.fall();
         printBoard(b);
-	  }
+	    }
     }
   }
 

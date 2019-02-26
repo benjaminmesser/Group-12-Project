@@ -1,4 +1,4 @@
-public class Player{
+public class Player {
   private int xPos;
   private int yPos;
   // eventually add more for health, coins, etc.
@@ -6,28 +6,28 @@ public class Player{
    * This class stores information about the player's location on the map. It has a copy constructor and has methods to retrieve and
    * set the location of the player.
   */
-  public Player(){
+  public Player() {
     this.xPos = 0;
     this.yPos = 0;
     // eventually change to automatically put player at the origin, once we find out where that is
   }
-  
-  public Player(Player p){
+
+  public Player(Player p) {
     this.xPos = p.getXPos();
     this.yPos = p.getYPos();
   }
 
   //setter and getter methods: these only change the stats for the file. Actual movement and such takes place in the board class.
-  public int getXPos(){
+  public int getXPos() {
     return this.xPos;
   }
-  public int getYPos(){
+  public int getYPos() {
     return this.yPos;
   }
-  public void setXPos(int x){
+  public void setXPos(int x) {
     this.xPos = x;
   }
-  public void setYPos(int y){
+  public void setYPos(int y) {
     this.yPos = y;
   }
 

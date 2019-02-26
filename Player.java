@@ -2,6 +2,10 @@ public class Player{
   private int xPos;
   private int yPos;
   // eventually add more for health, coins, etc.
+  /**
+   * This class stores information about the player's location on the map. It has a copy constructor and has methods to retrieve and
+   * set the location of the player.
+  */
   public Player(){
     this.xPos = 0;
     this.yPos = 0;

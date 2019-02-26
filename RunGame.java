@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
-public class RunGame(){
+public class RunGame {
   // basically just how the game is run
   private Board b;
   public static void main(String[] args){
     b = new Board();
     Scanner input = new Scanner(System.in);
-    
+
     	System.out.println("Welcome to our adventure game");
    	System.out.println("Please enter 1 to start");
 	boolean start = false;
@@ -18,14 +18,14 @@ public class RunGame(){
 			start = true;
 		}
 	  }
-		
+
 	startIn.close();
-    
+
     while (true){
       // essentially: keeps checking for input, calls movement methods (b.moveLeft(), b.moveRight(), etc.) accordingly...
       // basically manages all user interaction stuff here.
       char command = input.nextLine().charAt(0);
-      
+
       switch (command) {
         case 'q':  b.moveUpLeft();
                    break;
@@ -40,11 +40,11 @@ public class RunGame(){
         case 'd':  b.moveRight();
                    break;
       }
-      
+
       printBoard();
     }
   }
-  
+
   private void printBoard() {
     char[][] m = b.getMap();
     System.out.println("------------------------------");

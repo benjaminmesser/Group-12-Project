@@ -69,7 +69,7 @@ public class Board{
   public void fall(){
     // checks to see if space is available below the player's current position; if so, changes yPos accordingly.
     if (p.getYPos() - 1 > 0){
-      if (map[p.getXPos()][p.getYPos() - 1] == ' ')
+      if (map[p.getXPos()][p.getYPos() - 1] == ' '){
         p.setYPos(p.getYPos() - 1);
       }
     }

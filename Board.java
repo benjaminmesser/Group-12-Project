@@ -33,6 +33,7 @@ public class Board{
     // Something like the following: may need to be changed accordingly if setup changes. Similar kind of idea for the other three.
     if (p.getXPos() - 1 > 0){
       if (map[p.getXPos() - 1][p.getYPos()] == ' '){
+        this.map[p.getXPos()][p.getYPos()] = ' ';
         p.setXPos(p.getXPos() - 1);
       }
     }
@@ -43,6 +44,7 @@ public class Board{
     // checks to see if space is free above and to the left of the player's current position; if so, changes xPos accordingly.
     if (p.getXPos() - 1 > 0 && p.getYPos() + 1 <= this.map[0].length){
       if (map[p.getXPos() - 1][p.getYPos() + 1] == ' '){
+        this.map[p.getXPos()][p.getYPos()] = ' ';
         p.setXPos(p.getXPos() - 1);
         p.setYPos(p.getXPos() + 1);
       }
@@ -54,6 +56,7 @@ public class Board{
     // checks to see if space is free to the right of the player's current position; if so, changes xPos accordingly.
     if (p.getXPos() + 1 <= this.map[0].length){
       if (map[p.getXPos() + 1][p.getYPos()] == ' '){
+        this.map[p.getXPos()][p.getYPos()] = ' ';
         p.setXPos(p.getXPos() + 1);
       }
     }
@@ -64,6 +67,7 @@ public class Board{
     // checks to see if space is free above and to the right of the player's current position; if so, changes xPos accordingly.
     if (p.getXPos() + 1 <= this.map[0].length && p.getYPos() + 1 <= this.map[0].length){
       if (map[p.getXPos() + 1][p.getYPos() + 1] == ' '){
+        this.map[p.getXPos()][p.getYPos()] = ' ';
         p.setXPos(p.getXPos() + 1);
         p.setYPos(p.getXPos() + 1);
       }
@@ -75,6 +79,7 @@ public class Board{
     // checks to see if space is free above the player's current position; if so, changes yPos accordingly.
     if (p.getYPos() + 1 <= this.map[0].length){
       if (map[p.getXPos()][p.getYPos() + 1] == ' '){
+        this.map[p.getXPos()][p.getYPos()] = ' ';
         p.setYPos(p.getYPos() + 1);
       }
     }
@@ -85,6 +90,7 @@ public class Board{
     // checks to see if space is available below the player's current position; if so, changes yPos accordingly.
     if (p.getYPos() - 1 > 0){
       if (map[p.getXPos()][p.getYPos() - 1] == ' '){
+        this.map[p.getXPos()][p.getYPos()] = ' ';
         p.setYPos(p.getYPos() - 1);
       }
     }

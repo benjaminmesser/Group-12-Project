@@ -3,6 +3,12 @@ import java.lang.*;
 
 public class RunGame {
   // basically just how the game is run
+  /**
+   * This is the main class that runs methods in the Board class in order to facilitate displaying the player and map, as well as
+   * allowing the player to interact with the map. This class prints out the board after any move is made by the player and it
+   * facilitates the falling of the player if there is an empty space below them. This class also interacts with the user/player and
+   * allows for keyboard input to control the movement of the player.
+  */
   public static void main(String[] args){
     Board b = new Board();
     Scanner input = new Scanner(System.in);

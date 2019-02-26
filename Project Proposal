@@ -2,3 +2,17 @@ Project Proposal:
 Type: Animation Game
 Platformer
 Our project will be a simplified platformer and possibly a metroidvania inspired game. It is inspired by games such as Mario bros and Hollow Knight. We will implement basic character motions such as standard character movement (left and right motion, and jump) based on user inputs. We plan to incorporate elements generally found in the genre including 2D-based timed levels with obstacles in which the designed character(s) must jump over or interact with in order to reach an "end of level goal". A simple combat mechanic (jumping on heads) will be present against rudimentary AI enemies. Possible features we plan to implement in the future once the core gameplay of movement and the level design are complete include more advanced combat with possible weapon and item progression, and computer generated level design.
+
+
+Updated Project Proposal:
+Type: Animation Game; Platformer
+
+Our project consists of a simplified platformer and possible a metroidvania inspired game. It will most likely resemble games such as Mario Bros and Hollow Knight. As per our original project proposal, we ultimately plan to incorporate elements generally found in the animation genre, such as 2D- based time levels with obstacles in which the designed character (or characters) must jump over, or generally interact with in order to reach an “end of level goal”. To contribute to our “end game” we plan to start off with basic character motion such as standard character movement. 
+
+In lieu with this basic step, we plan to establish basic game features in our text based version for our first demo by detecting character positions and thus, character movement such as side to side, jumping and “falling” which are managed by user input. This initial stage primarily focuses on creating a simplified game environment and how the user/player may interact with the game board. Therefore, this version of our project tackles the core gameplay of movement and level design, in which later versions of the game will build up from. 
+
+Going forward, at future discretion, we plan to include combat, and enhance core features, possibly including weapons,item progression and computer generated level design. We expect to create a simple combat mechanic (possibly jumping on heads) against rudimentary AI enemies.
+
+
+
+

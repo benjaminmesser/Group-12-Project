@@ -42,7 +42,7 @@ public class RunGame {
 
   private static void printBoard(Board b) {
     char[][] m = b.getMap();
-    System.out.println("------------------------------");
+    System.out.println("----------------");
     for (int i = 0; i < m.length; i++) {
       String row = "";
       for (int j = 0; j < m[i].length; j++) {
@@ -50,6 +50,6 @@ public class RunGame {
       }
       System.out.println(row);
     }
-    System.out.println("------------------------------");
+    System.out.println("----------------");
   }
 }

@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.lang.*;
 
 public class RunGame {
   // basically just how the game is run
@@ -35,14 +36,22 @@ public class RunGame {
         case 'd':  b.moveRight();
                    break;
       }
-
-      printBoard(b);
+	  printBoard(b);
+	  while (b.getPlayer().getYPos() < b.getMap().length - 1 && b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == ' '){
+	    try {
+          Thread.sleep(2000);
+	    } catch (InterruptedException ex){
+          Thread.currentThread().interrupt();
+	    }
+        b.fall();
+        printBoard(b);
+	  }
     }
   }
 
   private static void printBoard(Board b) {
     char[][] m = b.getMap();
-    System.out.println("----------------");
+    System.out.println("------------------------------");
     for (int i = 0; i < m.length; i++) {
       String row = "";
       for (int j = 0; j < m[i].length; j++) {
@@ -50,6 +59,6 @@ public class RunGame {
       }
       System.out.println(row);
     }
-    System.out.println("----------------");
+    System.out.println("------------------------------");
   }
 }

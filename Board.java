@@ -21,13 +21,9 @@ public class Board{
 
   public void updateMap(){
     // adds all necessary changes to the map, for now just moving the player character. called after moves are made.
-    while (p.getYPos() < map.length - 1 && map[p.getYPos() + 1][p.getXPos()] == ' '){
-      p.setYPos(p.getYPos() + 1);
-    }
     int x = p.getXPos();
     int y = p.getYPos();
     this.map[y][x] = '|';
-	System.out.println(p.getYPos());
   }
 
   public void moveLeft(){
@@ -96,6 +92,7 @@ public class Board{
         p.setYPos(p.getYPos() + 1);
       }
     }
+	updateMap();
   }
 
   public char[][] getMap(){
@@ -107,5 +104,11 @@ public class Board{
       }
     }
     return mapClone;
+  }
+  
+  public Player getPlayer(){
+    //returns a copy of the player.
+    Player pp = new Player(p);
+    return pp;
   }
 }

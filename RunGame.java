@@ -7,19 +7,19 @@ public class RunGame {
     b = new Board();
     Scanner input = new Scanner(System.in);
 
-    	System.out.println("Welcome to our adventure game");
+    System.out.println("Welcome to our adventure game");
    	System.out.println("Please enter 1 to start");
-	boolean start = false;
-	Scanner startIn= new Scanner(System.in);
-	while (!start){
-		int startNumber= startIn.nextInt();
-		if(startNumber==1) {
-			init();
-			start = true;
-		}
+	  boolean start = false;
+	  Scanner startIn= new Scanner(System.in);
+	  while (!start){
+		  int startNumber= startIn.nextInt();
+		  if(startNumber==1) {
+			  init();
+			  start = true;
+		  }
 	  }
 
-	startIn.close();
+	  startIn.close();
 
     while (true){
       // essentially: keeps checking for input, calls movement methods (b.moveLeft(), b.moveRight(), etc.) accordingly...
@@ -30,8 +30,7 @@ public class RunGame {
         case 'q':  b.moveUpLeft();
                    break;
         case 'w':
-	case ' ':
-		   b.jump();
+	      case ' ':  b.jump();
                    break;
         case 'e':  b.moveUpRight();
                    break;

@@ -1,10 +1,12 @@
 public class Board{
   private Player p;
   private char[][] map;
+
   public Board(){
     this.p = new Player();
     this.map = createMap();
   }
+
   public char[][] createMap(){
     // draw map here, whoever wants to do that.
     map = new char[][]{
@@ -12,12 +14,18 @@ public class Board{
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x'},
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x'},
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', ' ', ' ', ' ', 'x', 'x', 'x', 'x'},
-            {'|', ' ', ' ', 'x', ' ', ' ', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x'}};
+            {' ', ' ', ' ', 'x', ' ', ' ', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x'}};
     return map;
   }
+
   public void updateMap(){
     // adds all necessary changes to the map, for now just moving the player character. called after moves are made.
+    int x = p.getXPos();
+    int y = p.getYPos();
+
+    this.map[y][x] = '|'
   }
+
   public void moveLeft(){
     // checks to see if space is free to the left of the player's current position; if so, changes xPos accordingly.
     // Something like the following: may need to be changed accordingly if setup changes. Similar kind of idea for the other three.
@@ -28,6 +36,7 @@ public class Board{
     }
     updateMap();
   }
+
   public void moveUpLeft(){
     // checks to see if space is free above and to the left of the player's current position; if so, changes xPos accordingly.
     if (p.getXPos() - 1 > 0 && p.getYPos() + 1 <= this.map[0].length){
@@ -66,6 +75,7 @@ public class Board{
     }
     updateMap();
   }
+
   public void fall(){
     // checks to see if space is available below the player's current position; if so, changes yPos accordingly.
     if (p.getYPos() - 1 > 0){
@@ -75,6 +85,7 @@ public class Board{
     }
     updateMap();
   }
+
   public char[][] getMap(){
     //returns a copy of the map.
     char[][] mapClone = new char[map.length][map[0].length];

@@ -23,7 +23,7 @@ public class Board{
     int x = p.getXPos();
     int y = p.getYPos();
 
-    this.map[y][x] = '|'
+    this.map[y][x] = '|';
   }
 
   public void moveLeft(){

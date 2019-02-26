@@ -9,15 +9,13 @@ public class RunGame {
     System.out.println("Welcome to our adventure game");
    	System.out.println("Please enter 1 to start");
 	  boolean start = false;
-	  Scanner startIn= new Scanner(System.in);
 	  while (!start){
-		  int startNumber= startIn.nextInt();
+		  int startNumber = Integer.parseInt(input.nextLine());
 		  if(startNumber==1) {
 			  start = true;
 		  }
 	  }
-
-	  startIn.close();
+    printBoard(b);
 
     while (true){
       // essentially: keeps checking for input, calls movement methods (b.moveLeft(), b.moveRight(), etc.) accordingly...

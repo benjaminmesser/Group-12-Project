@@ -1,4 +1,6 @@
-public class GuiGame {
+import javafX.scene.input.*;
+
+public class GuiGame extends Application {
   private double MS_PER_UPDATE = 0.0;
 
   public static void main(String[] args) {
@@ -26,6 +28,8 @@ public class GuiGame {
     }
   }
 
+  public void
+
   public void getInput() {
 
   }
@@ -38,30 +42,3 @@ public class GuiGame {
 
   }
 }
-
-
-
-/*
-// fixed update time step
-// variable rendering time step
-
-double previous = getCurrentTime();
-double lag = 0.0;
-while (true)
-{
-  double current = getCurrentTime();
-  double elapsed = current - previous;
-  previous = current;
-  lag += elapsed;
-
-  processInput();
-
-  while (lag >= MS_PER_UPDATE) // tries to update the map on a set cycle speed
-  {
-    update();
-    lag -= MS_PER_UPDATE;
-  }
-
-  render(); // renders whenever possible after an update
-}
-*/

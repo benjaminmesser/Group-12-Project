@@ -28,8 +28,6 @@ public class GuiGame extends Application {
     }
   }
 
-  public void
-
   public void getInput() {
 
   }

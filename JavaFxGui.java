@@ -8,25 +8,27 @@ import javafx.scene.control.*;
 import javafx.geometry.Insets;
 
 public class JavaFxGui extends Application {
+  private Board b = new Board();
+
+  ImageView[][] renderedBoard = new ImageView[b.getMap().length][b.getMap()[0].length];
+
   public static void main(String[] args) {
     launch(args);
   }
 
   @Override
   public void start(Stage stage) {
-    Board b = new Board();
     stage.setTitle("Good Waluigi");
 
-    ImageView[][] renderedBoard = new ImageView[b.getMap().length][b.getMap()[0].length];
-    for (int i = 0; i < 5; i++){
-      for (int j = 0; j < 15; j++){
+    for (int i = 0; i < b.getMap().length; i++) {
+      for (int j = 0; j < b.getMap()[0].length; j++){
         renderedBoard[i][j] = new ImageView();
         renderedBoard[i][j].setLayoutX(i*80);
         renderedBoard[i][j].setLayoutY(j*80);
       }
     }
 
-    renderedBoard = updateRender(renderedBoard, b);
+    updateRender();
 
     Pane root = new Pane();
     // add all the images to the scene
@@ -57,7 +59,7 @@ public class JavaFxGui extends Application {
                    break;
       }
 
-      renderedBoard = updateRender(renderedBoard, b);
+      updateRender();
 
       while (b.getPlayer().getYPos() < b.getMap().length - 1 && b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == ' ') {
         try {
@@ -66,38 +68,37 @@ public class JavaFxGui extends Application {
           Thread.currentThread().interrupt();
         }
         b.fall();
-        renderedBoard = updateRender(renderedBoard, b);
+        updateRender();
       }
     });
   }
 
-  private ImageView[][] updateRender(ImageView[][] r, Board b) {
+  private void updateRender() {
     Image marioRight = new Image("sprites/marioRight.png");
     Image marioLeft = new Image("sprites/marioLeft.png");
     Image marioJumpRight = new Image("sprites/marioJumpRight.png");
     Image marioJumpLeft = new Image("sprites/marioJumpLeft.png");
     Image block = new Image("sprites/block.png");
 
-    for (int i = 0; i < r.length; i++) {
-      for (int j = 0; j < r[i].length; j++) {
+    for (int i = 0; i < this.b.getMap().length; i++) {
+      for (int j = 0; j < this.b.getMap()[i].length; j++) {
         switch (b.getMap()[i][j]) {
-          case 'x': r[i][j].setImage(block);
+          case 'x': renderedBoard[i][j].setImage(block);
                     break;
-          case 'a': r[i][j].setImage(marioLeft);
+          case 'a': renderedBoard[i][j].setImage(marioLeft);
                     break;
-          case 'd': r[i][j].setImage(marioRight);
+          case 'd': renderedBoard[i][j].setImage(marioRight);
                     break;
-          case 'q': r[i][j].setImage(marioJumpLeft);
+          case 'q': renderedBoard[i][j].setImage(marioJumpLeft);
                     break;
-          case 'e': r[i][j].setImage(marioJumpRight);
+          case 'e': renderedBoard[i][j].setImage(marioJumpRight);
                     break;
-          case ' ': r[i][j].setImage(null);
+          case ' ': renderedBoard[i][j].setImage(null);
                     break;
-          default:  r[i][j].setImage(null);
+          default:  renderedBoard[i][j].setImage(null);
                     break;
         }
       }
     }
-    return r;
   }
 }

@@ -16,9 +16,11 @@ public class GuiGame {
       lag += elapsed
       // process input
 
-      // update board
-      b = updateBoard(b);
-
+      while (lag >= MS_PER_UPDATE) {
+        // update board
+        b = updateBoard(b);
+        lag -= MS_PER_UPDATE;
+      }
       // render game
       render(b);
     }

@@ -9,8 +9,14 @@ import javafx.geometry.Insets;
 
 public class JavaFxGui extends Application {
   private Board b = new Board();
-
   ImageView[][] renderedBoard = new ImageView[b.getMap().length][b.getMap()[0].length];
+
+  // Images to be used for the render
+  Image marioRight = new Image("sprites/marioRight.png");
+  Image marioLeft = new Image("sprites/marioLeft.png");
+  Image marioJumpRight = new Image("sprites/marioJumpRight.png");
+  Image marioJumpLeft = new Image("sprites/marioJumpLeft.png");
+  Image block = new Image("sprites/block.png");
 
   public static void main(String[] args) {
     launch(args);
@@ -20,6 +26,7 @@ public class JavaFxGui extends Application {
   public void start(Stage stage) {
     stage.setTitle("Good Waluigi");
 
+    // Setting up the board with all the images
     for (int i = 0; i < b.getMap().length; i++) {
       for (int j = 0; j < b.getMap()[0].length; j++){
         renderedBoard[i][j] = new ImageView();
@@ -28,6 +35,7 @@ public class JavaFxGui extends Application {
       }
     }
 
+    // Set the images for the starting board
     updateRender();
 
     Pane root = new Pane();
@@ -39,24 +47,21 @@ public class JavaFxGui extends Application {
     }
 
     Scene scene = new Scene(root, b.getMap()[0].length * 80, b.getMap().length * 80);
-    stage.setScene(scene);
-    stage.show();
-
+    // Process keyboard input and automatically update the rendered image
     scene.setOnKeyPressed(e -> {
-      //get keyboard input
       String input = e.getCode().toString();
       switch (input) {
         case "q":  b.moveUpLeft();
-                   break;
+        break;
         case "w":
-	      case " ":  b.jump();
-                   break;
+        case " ":  b.jump();
+        break;
         case "e":  b.moveUpRight();
-                   break;
+        break;
         case "a":  b.moveLeft();
-                   break;
+        break;
         case "d":  b.moveRight();
-                   break;
+        break;
       }
 
       updateRender();
@@ -71,17 +76,14 @@ public class JavaFxGui extends Application {
         updateRender();
       }
     });
+    stage.setScene(scene);
+    stage.show();
+
   }
 
   private void updateRender() {
-    Image marioRight = new Image("sprites/marioRight.png");
-    Image marioLeft = new Image("sprites/marioLeft.png");
-    Image marioJumpRight = new Image("sprites/marioJumpRight.png");
-    Image marioJumpLeft = new Image("sprites/marioJumpLeft.png");
-    Image block = new Image("sprites/block.png");
-
-    for (int i = 0; i < this.b.getMap().length; i++) {
-      for (int j = 0; j < this.b.getMap()[i].length; j++) {
+    for (int i = 0; i < b.getMap().length; i++) {
+      for (int j = 0; j < b.getMap()[i].length; j++) {
         switch (b.getMap()[i][j]) {
           case 'x': renderedBoard[i][j].setImage(block);
                     break;

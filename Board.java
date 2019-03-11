@@ -19,7 +19,7 @@ public class Board {
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x'},
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x'},
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', ' ', ' ', ' ', 'x', 'x', 'x', 'x'},
-            {'|', ' ', ' ', 'x', ' ', ' ', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x'}};
+            {'d', ' ', ' ', 'x', ' ', ' ', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x'}};
 	p.setYPos(map.length - 1);
     return map;
   }
@@ -28,7 +28,7 @@ public class Board {
     // adds all necessary changes to the map, for now just moving the player character. called after moves are made.
     int x = p.getXPos();
     int y = p.getYPos();
-    this.map[y][x] = '|';
+    this.map[y][x] = p.getSprite();
   }
 
   public void moveLeft() {
@@ -38,6 +38,7 @@ public class Board {
       if (map[p.getYPos()][p.getXPos() - 1] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() - 1);
+	p.setSprite('a');
       }
     }
     updateMap();
@@ -50,6 +51,7 @@ public class Board {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() - 1);
         p.setYPos(p.getYPos() - 1);
+	p.setSprite('q');
       }
     }
     updateMap();
@@ -61,6 +63,7 @@ public class Board {
       if (map[p.getYPos()][p.getXPos() + 1] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() + 1);
+	p.setSprite('d');
       }
     }
     updateMap();
@@ -73,6 +76,7 @@ public class Board {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() + 1);
         p.setYPos(p.getYPos() - 1);
+	p.setSprite('e');
       }
     }
     updateMap();
@@ -95,6 +99,11 @@ public class Board {
       if (map[p.getYPos() + 1][p.getXPos()] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setYPos(p.getYPos() + 1);
+	if (p.getSprite() == 'e'){
+		p.setSprite('d');
+	} else if (p.getSprite() == 'q'){
+		p.setSprite('a');
+	}
       }
     }
 	  updateMap();

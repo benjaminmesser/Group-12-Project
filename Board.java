@@ -99,13 +99,14 @@ public class Board {
       if (map[p.getYPos() + 1][p.getXPos()] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setYPos(p.getYPos() + 1);
+	
+      }
+    }
 	if (p.getSprite() == 'e'){
 		p.setSprite('d');
 	} else if (p.getSprite() == 'q'){
 		p.setSprite('a');
 	}
-      }
-    }
 	  updateMap();
   }
 

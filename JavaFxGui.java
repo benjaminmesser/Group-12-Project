@@ -49,16 +49,16 @@ public class JavaFxGui extends Application {
     scene.setOnKeyPressed(e -> {
       String input = e.getCode().toString();
       switch (input) {
-        case "q":  b.moveUpLeft();
+        case "Q":  b.moveUpLeft();
         break;
-        case "w":
-        case " ":  b.jump();
+        case "W":
+        case "SPACE":  b.jump();
         break;
-        case "e":  b.moveUpRight();
+        case "E":  b.moveUpRight();
         break;
-        case "a":  b.moveLeft();
+        case "A":  b.moveLeft();
         break;
-        case "d":  b.moveRight();
+        case "D":  b.moveRight();
         break;
       }
 

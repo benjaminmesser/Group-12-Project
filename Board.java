@@ -88,6 +88,11 @@ public class Board {
       if (map[p.getYPos() - 1][p.getXPos()] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setYPos(p.getYPos() - 1);
+	if (p.getSprite() == 'd'){
+		p.setSprite('e');
+	} else if (p.getSprite() == 'a'){
+		p.setSprite('q');
+	}
       }
     }
     updateMap();

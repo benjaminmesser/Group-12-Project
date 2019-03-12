@@ -64,7 +64,9 @@ public class JavaFxGui extends Application {
 
       updateRender();
 
-      while (b.getPlayer().getYPos() < b.getMap().length - 1 && b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == ' ') {
+      
+    });
+    while (b.getPlayer().getYPos() < b.getMap().length - 1 && b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == ' ') {
         try {
           Thread.sleep(500);
         } catch (InterruptedException ex) {
@@ -73,7 +75,6 @@ public class JavaFxGui extends Application {
         b.fall();
         updateRender();
       }
-    });
 
     stage.setScene(scene);
     stage.show();

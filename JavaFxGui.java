@@ -30,8 +30,8 @@ public class JavaFxGui extends Application {
     for (int i = 0; i < b.getMap().length; i++) {
       for (int j = 0; j < b.getMap()[0].length; j++){
         renderedBoard[i][j] = new ImageView();
-        renderedBoard[i][j].setLayoutX(i*80);
-        renderedBoard[i][j].setLayoutY(j*80);
+        renderedBoard[i][j].setLayoutY(i*80);
+        renderedBoard[i][j].setLayoutX(j*80);
       }
     }
     updateRender();

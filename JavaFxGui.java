@@ -79,7 +79,7 @@ public class JavaFxGui extends Application {
             b.fall();
             updateRender();
           }
-        }
+      
       if (b.getPlayer().getYPos() < b.getMap().length - 1){
             if (b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == 'x' && (b.getPlayer().getSprite() == 'q' || b.getPlayer().getSprite() == 'e')){
               try {
@@ -91,6 +91,7 @@ public class JavaFxGui extends Application {
               updateRender();
             }
           }
+        }
     }, 100, 100);
     stage.setScene(scene);
     stage.show();

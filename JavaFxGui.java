@@ -34,8 +34,6 @@ public class JavaFxGui extends Application {
         renderedBoard[i][j].setLayoutY(j*80);
       }
     }
-
-    // Set the images for the starting board
     updateRender();
 
     Pane root = new Pane();
@@ -76,6 +74,7 @@ public class JavaFxGui extends Application {
         updateRender();
       }
     });
+
     stage.setScene(scene);
     stage.show();
 
@@ -97,6 +96,7 @@ public class JavaFxGui extends Application {
                     break;
           case ' ': renderedBoard[i][j].setImage(null);
                     break;
+          // Keeping these seperate for clarity
           default:  renderedBoard[i][j].setImage(null);
                     break;
         }

@@ -6,6 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.*;
 import javafx.geometry.Insets;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class JavaFxGui extends Application {
   private Board b = new Board();
@@ -66,7 +68,19 @@ public class JavaFxGui extends Application {
 
       
     });
-
+    new Timer().scheduleAtFixedRate(new TimerTask() {
+    public void run() {
+        while (b.getPlayer().getYPos() < b.getMap().length - 1 && b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == ' ') {
+            try {
+              Thread.sleep(200);
+            } catch (InterruptedException ex) {
+              Thread.currentThread().interrupt();
+            }
+            b.fall();
+            updateRender();
+          }
+        }
+    }, 100, 100);
     stage.setScene(scene);
     stage.show();
     
@@ -96,14 +110,5 @@ public class JavaFxGui extends Application {
       }
     }
     
-    while (b.getPlayer().getYPos() < b.getMap().length - 1 && b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == ' ') {
-        try {
-          Thread.sleep(500);
-        } catch (InterruptedException ex) {
-          Thread.currentThread().interrupt();
-        }
-        b.fall();
-        updateRender();
-      }
   }
 }

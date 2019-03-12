@@ -18,6 +18,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.control.*;
 import javafx.geometry.Insets;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class JavaFxGui extends Application {
   private Board b = new Board();

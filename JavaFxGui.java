@@ -80,6 +80,17 @@ public class JavaFxGui extends Application {
             updateRender();
           }
         }
+      if (b.getPlayer().getYPos() < b.getMap().length - 1){
+            if (b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == 'x' && (b.getPlayer().getSprite() == 'q' || b.getPlayer().getSprite() == 'e')){
+              try {
+                Thread.sleep(100);
+              } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+              }
+              b.fall();
+              updateRender();
+            }
+          }
     }, 100, 100);
     stage.setScene(scene);
     stage.show();

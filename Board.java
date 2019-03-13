@@ -1,5 +1,5 @@
 public class Board {
-  private Player p;
+  private Mario p;
   private char[][] map;
 
   /**
@@ -8,7 +8,7 @@ public class Board {
    * This class has methods to retrieve copies of its instance variables, as well as methods to move the player around the map.
    */
   public Board() {
-    this.p = new Player();
+    this.p = new Mario();
     this.map = createMap();
   }
 
@@ -111,9 +111,9 @@ public class Board {
     return mapClone;
   }
 
-  public Player getPlayer() {
+  public Mario getMario() {
     //returns a copy of the player.
-    Player pp = new Player(p);
+    Mario pp = new Mario(p);
     return pp;
   }
 }

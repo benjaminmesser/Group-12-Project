@@ -2,7 +2,7 @@ public abstract class Entity {
   private int xPos;
   private int yPos;
 
-  public Entity(x, y) {
+  public Entity(int x, int y) {
     setXPos(x);
     setYPos(y);
   }

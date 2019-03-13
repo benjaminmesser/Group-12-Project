@@ -83,7 +83,7 @@ public class JavaFxGui extends Application {
 
     new Timer().scheduleAtFixedRate(new TimerTask() {
     public void run() {
-        while (b.getPlayer().getYPos() < b.getMap().length - 1 && b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == ' ') {
+        while (b.getMario().getYPos() < b.getMap().length - 1 && b.getMap()[b.getMario().getYPos() + 1][b.getMario().getXPos()] == ' ') {
             try {
               Thread.sleep(200);
             } catch (InterruptedException ex) {
@@ -93,8 +93,8 @@ public class JavaFxGui extends Application {
             updateRender();
           }
 
-      if (b.getPlayer().getYPos() < b.getMap().length - 1){
-            if (b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == 'x' && (b.getPlayer().getSprite() == 'q' || b.getPlayer().getSprite() == 'e')){
+      if (b.getMario().getYPos() < b.getMap().length - 1){
+            if (b.getMap()[b.getMario().getYPos() + 1][b.getMario().getXPos()] == 'x' && (b.getMario().getSprite() == 'q' || b.getMario().getSprite() == 'e')){
               try {
                 Thread.sleep(100);
               } catch (InterruptedException ex) {

@@ -13,6 +13,12 @@ public class Mario extends Character {
     // eventually change to automatically put player at the origin, once we find out where that is
   }
 
+  public Mario(Mario m) {
+    super(m.getXPos(), m.getYPos());
+    setHealth(m.getHealth());
+    setCoins(m.getCoins());
+  }
+
   public void setHealth(int health) {
     this.health = health;
   }

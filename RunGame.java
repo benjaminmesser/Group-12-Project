@@ -43,7 +43,7 @@ public class RunGame {
                    break;
       }
 	    printBoard(b);
-	    while (b.getPlayer().getYPos() < b.getMap().length - 1 && b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == ' ') {
+	    while (b.getMario().getYPos() < b.getMap().length - 1 && b.getMap()[b.getMario().getYPos() + 1][b.getMario().getXPos()] == ' ') {
 	      try {
           Thread.sleep(500);
 	      } catch (InterruptedException ex) {

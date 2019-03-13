@@ -1,11 +1,25 @@
+//import com.sun.prism.paint.ImagePattern;
+
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.control.*;
 import javafx.geometry.Insets;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class JavaFxGui extends Application {
   private Board b = new Board();
@@ -37,44 +51,61 @@ public class JavaFxGui extends Application {
     updateRender();
 
     Pane root = new Pane();
+    //set background color
+    //root.setBackground(new Background(new BackgroundFill(Color.DEEPSKYBLUE, null, null)));
     // add all the images to the scene
     for (int i = 0; i < renderedBoard.length; i++) {
       for (int j = 0; j < renderedBoard[i].length; j++) {
         root.getChildren().add(renderedBoard[i][j]);
       }
     }
-
     Scene scene = new Scene(root, b.getMap()[0].length * 80, b.getMap().length * 80);
     // Process keyboard input and automatically update the rendered image
+
     scene.setOnKeyPressed(e -> {
       String input = e.getCode().toString();
       switch (input) {
-        case "q":  b.moveUpLeft();
+        case "Q":  b.moveUpLeft();
         break;
-        case "w":
-        case " ":  b.jump();
+        case "W":
+        case "SPACE":  b.jump();
         break;
-        case "e":  b.moveUpRight();
+        case "E":  b.moveUpRight();
         break;
-        case "a":  b.moveLeft();
+        case "A":  b.moveLeft();
         break;
-        case "d":  b.moveRight();
+        case "D":  b.moveRight();
         break;
       }
 
       updateRender();
-
-      while (b.getPlayer().getYPos() < b.getMap().length - 1 && b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == ' ') {
-        try {
-          Thread.sleep(500);
-        } catch (InterruptedException ex) {
-          Thread.currentThread().interrupt();
-        }
-        b.fall();
-        updateRender();
-      }
     });
 
+    new Timer().scheduleAtFixedRate(new TimerTask() {
+    public void run() {
+        while (b.getPlayer().getYPos() < b.getMap().length - 1 && b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == ' ') {
+            try {
+              Thread.sleep(200);
+            } catch (InterruptedException ex) {
+              Thread.currentThread().interrupt();
+            }
+            b.fall();
+            updateRender();
+          }
+
+      if (b.getPlayer().getYPos() < b.getMap().length - 1){
+            if (b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == 'x' && (b.getPlayer().getSprite() == 'q' || b.getPlayer().getSprite() == 'e')){
+              try {
+                Thread.sleep(100);
+              } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+              }
+              b.fall();
+              updateRender();
+            }
+          }
+        }
+    }, 100, 100);
     stage.setScene(scene);
     stage.show();
 

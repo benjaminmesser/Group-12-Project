@@ -31,7 +31,7 @@ public class JavaFxGui extends Application {
   Image marioJumpRight = new Image("sprites/marioJumpRight.png");
   Image marioJumpLeft = new Image("sprites/marioJumpLeft.png");
   Image block = new Image("sprites/block.png");
- 
+
   public static void main(String[] args) {
     launch(args);
   }
@@ -46,7 +46,7 @@ public class JavaFxGui extends Application {
         renderedBoard[i][j] = new ImageView();
         renderedBoard[i][j].setLayoutY(i*80);
         renderedBoard[i][j].setLayoutX(j*80);
-        
+
       }
     }
     updateRender();
@@ -58,12 +58,11 @@ public class JavaFxGui extends Application {
     for (int i = 0; i < renderedBoard.length; i++) {
       for (int j = 0; j < renderedBoard[i].length; j++) {
         root.getChildren().add(renderedBoard[i][j]);
-
-      }  
+      }
     }
     Scene scene = new Scene(root, b.getMap()[0].length * 80, b.getMap().length * 80);
     // Process keyboard input and automatically update the rendered image
-    
+
     scene.setOnKeyPressed(e -> {
       String input = e.getCode().toString();
       switch (input) {
@@ -79,13 +78,13 @@ public class JavaFxGui extends Application {
         case "D":  b.moveRight();
         break;
       }
-      
-      updateRender();
 
+      updateRender();
     });
+
     new Timer().scheduleAtFixedRate(new TimerTask() {
     public void run() {
-        while (b.getPlayer().getYPos() < b.getMap().length - 1 && b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == ' ') {
+        while (b.getMario().getYPos() < b.getMap().length - 1 && b.getMap()[b.getMario().getYPos() + 1][b.getMario().getXPos()] == ' ') {
             try {
               Thread.sleep(200);
             } catch (InterruptedException ex) {
@@ -94,9 +93,9 @@ public class JavaFxGui extends Application {
             b.fall();
             updateRender();
           }
-      
-      if (b.getPlayer().getYPos() < b.getMap().length - 1){
-            if (b.getMap()[b.getPlayer().getYPos() + 1][b.getPlayer().getXPos()] == 'x' && (b.getPlayer().getSprite() == 'q' || b.getPlayer().getSprite() == 'e')){
+
+      if (b.getMario().getYPos() < b.getMap().length - 1){
+            if (b.getMap()[b.getMario().getYPos() + 1][b.getMario().getXPos()] == 'x' && (b.getMario().getSprite() == 'q' || b.getMario().getSprite() == 'e')){
               try {
                 Thread.sleep(100);
               } catch (InterruptedException ex) {

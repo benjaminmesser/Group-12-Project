@@ -6,6 +6,10 @@ public class Character extends Entity {
     super(x,y);
   }
 
+  public Character(Character c){
+    super(c);
+  }
+
   public void setSprite(char c) {
     this.sprite = c;
   }

@@ -1,6 +1,9 @@
 public class Mario extends Character {
   private int health;
   private int coins;
+  private int hVelocity = 0;
+  private int vVelocity = 0;
+  private booleon grounded = true;
   // eventually add more for health, coins, etc.
   /**
    * This class stores information about the player's location on the map. It has a copy constructor and has methods to retrieve and
@@ -37,5 +40,33 @@ public class Mario extends Character {
 
   public void addCoin() {
     this.coins += 1;
+  }
+
+  public int getHVelocity(){
+    return hVelocity;
+  }
+
+  public void setHVelocity(int a){
+    this.hVelocity = a;
+  }
+
+  public int getVVelocity(){
+    return vVelocity;
+  }
+
+  public void setVVelocity(int a){
+    this.vVelocity = a;
+  }
+
+  public void notMoving(){
+    while (vVelocity > 0){
+      vVelocity = vVelocity - 1;
+    }
+  }
+
+  public void fall(){
+    while(grounded = false){
+      hVelocity = hVelocity - 0.981;
+    }
   }
 }

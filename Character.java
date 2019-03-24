@@ -1,4 +1,5 @@
 public class Character extends Entity {
+  
   private char sprite;
 
   public Character(int x, int y) {

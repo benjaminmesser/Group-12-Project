@@ -2,3 +2,25 @@ Project Proposal:
 Type: Animation Game
 Platformer
 Our project will be a simplified platformer and possibly a metroidvania inspired game. It is inspired by games such as Mario bros and Hollow Knight. We will implement basic character motions such as standard character movement (left and right motion, and jump) based on user inputs. We plan to incorporate elements generally found in the genre including 2D-based timed levels with obstacles in which the designed character(s) must jump over or interact with in order to reach an "end of level goal". A simple combat mechanic (jumping on heads) will be present against rudimentary AI enemies. Possible features we plan to implement in the future once the core gameplay of movement and the level design are complete include more advanced combat with possible weapon and item progression, and computer generated level design.
+
+
+Updated Project Proposal for Demo 1:
+Type: Animation Game; Platformer
+
+Our project consists of a simplified platformer and possible a metroidvania inspired game. It will most likely resemble games such as Mario Bros and Hollow Knight. As per our original project proposal, we ultimately plan to incorporate elements generally found in the animation genre, such as 2D- based time levels with obstacles in which the designed character (or characters) must jump over, or generally interact with in order to reach an “end of level goal”. To contribute to our “end game” we plan to start off with basic character motion such as standard character movement. 
+
+In lieu with this basic step, we plan to establish basic game features in our text based version for our first demo by detecting character positions and thus, character movement such as side to side, jumping and “falling” which are managed by user input. This initial stage primarily focuses on creating a simplified game environment and how the user/player may interact with the game board. Therefore, this version of our project tackles the core gameplay of movement and level design, in which later versions of the game will build up from. 
+
+Going forward, at future discretion, we plan to include combat, and enhance core features, possibly including weapons,item progression and computer generated level design. We expect to create a simple combat mechanic (possibly jumping on heads) against rudimentary AI enemies.
+
+Updated Project Proposal for Demo 2:
+Our project consists of a simplified platformer and possible a metroidvania inspired game. It will most likely resemble games such as Mario Bros and Hollow Knight. As per our original project proposal, we ultimately plan to incorporate elements generally found in the animation genre, such as 2D- based timed levels with obstacles in which the designed character (or characters) must jump over, or generally interact with in order to reach an “end of level goal”. To contribute to our “end game” we plan to start off with basic character motion such as standard character movement. 
+
+Our text based version of the game, includes detecting character positions and thus, character movement such as side to side, jumping and “falling” which are managed by user input. This initial stage primarily focuses on creating a simplified game environment and how the user/player may interact with the game board. Therefore, this version of our project tackles the core gameplay of movement and level design, in which later versions of the game will build up from. 
+
+Continuing with the logic from our first demonstration of the game, we explore implementing a graphical user interface for our second version of the game. Here, we plan to graphically enhance the core features, such as character movement by user input and creation of a board, of the game that were laid out in our text based version. These GUI features include obstacles such as blocks indicating a graphical display of our main map and implementing a palpable AI character. Again, our main focus is on improving character movement, and user interaction whilst also making a more aesthetically pleasing game design. 
+
+As we have our main functional features of the game tackled, we turn to the question of what could make our game more fun and challenging for the user? Thus, going forward we plan to build upon our already-established game features. This includes a simple combat mechanic (possibly jumping on heads) against rudimentary AI enemies, use of weaponry and item progression- possibly features to demonstrate the characters health and possibly coins or some other achievement to signify a “level up”. In basic terms, we plan to implement a goal the character can obtain within the game to advance forward to the next level/(s). Thus, implementing different level/(s) ultimately means we plan to create different map displays. In doing so, we intend to establish a user face to ultimately make our game more user-friendly whilst further improving graphics. 
+
+
+

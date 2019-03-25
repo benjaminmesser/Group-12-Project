@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyEvent;
+import javafx.animation.AnimationTimer;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -25,8 +26,8 @@ public class BadMario extends Application {
     stage.setScene(scene);
 
     // Need to add window size
-    Canvas canvas = new Canvas(x, y);
-    root.getChildren.add(canvas);
+    Canvas canvas = new Canvas(500, 500);
+    root.getChildren().add(canvas);
 
     ArrayList<String> input = new ArrayList<String>();
 
@@ -46,12 +47,16 @@ public class BadMario extends Application {
 
     // Add images to be used
 
-    new AnimationTimer(e -> {
-      gc.clearRect(0, 0, x, y);
-
-
-    });
+    new AnimationTimer() {
+      public void handle(long currentNanoTime) {
+        renderGame();
+      }
+    }.start();
 
     stage.show();
+  }
+
+  public void renderGame() {
+
   }
 }

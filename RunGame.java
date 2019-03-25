@@ -1,37 +1,76 @@
 import java.util.Scanner;
+import java.lang.*;
 
 public class RunGame {
-	//initalizes the game by creating the board and player
-	public static void init() {
-		Board b= new Board();
-		Player p= new Player();
-		
-	}
-	//Basically just how the game is run
-	public static void main(String[] args) {
-		//Opens "start menu" that allows player to start game
-		System.out.println("Welcome to our adventure game");
-		System.out.println("Please enter 1 to start");
-		Scanner startIn= new Scanner(System.in);
-		int startNumber= startIn.nextInt();
-		if(startNumber==1) {
-			init();
-		}
-		startIn.close();
-		
-	}
+  // basically just how the game is run
+  /**
+   * This is the main class that runs methods in the Board class in order to facilitate displaying the player and map, as well as
+   * allowing the player to interact with the map. This class prints out the board after any move is made by the player and it
+   * facilitates the falling of the player if there is an empty space below them. This class also interacts with the user/player and
+   * allows for keyboard input to control the movement of the player.
+  */
+  public static void main(String[] args) {
+    Board b = new Board();
+    Scanner input = new Scanner(System.in);
 
-}
+    System.out.println("Welcome to our adventure game");
+   	System.out.println("Please enter 1 to start");
+	  boolean start = false;
+	  while (!start) {
+		  int startNumber = Integer.parseInt(input.nextLine());
+		  if (startNumber==1) {
+			  start = true;
+		  }
+	  }
+    printBoard(b);
 
-/**
-public class RunGame(){
-// basically just how the game is run
-public static void main(String[] args){
-  Board b = new Board();
-  while (true){
-    // essentially: keeps checking for input, calls movement methods (b.moveLeft(), b.moveRight(), etc.) accordingly...
-    // basically manages all user interaction stuff here.
+    while (true) {
+      // essentially: keeps checking for input, calls movement methods (b.moveLeft(), b.moveRight(), etc.) accordingly...
+      // basically manages all user interaction stuff here.
+      char command = input.nextLine().charAt(0);
+
+      switch (command) {
+        case 'q':  b.moveUpLeft();
+					b.goombaMove();
+                   break;
+        case 'w':
+	      case ' ':  b.jump();
+					b.goombaMove();
+                   break;
+        case 'e':  b.moveUpRight();
+					b.goombaMove();
+                   break;
+        case 'a':  b.moveLeft();
+					b.goombaMove();
+                   break;
+        case 'd':  b.moveRight();
+					b.goombaMove();
+                   break;
+      }
+	    printBoard(b);
+	    while (b.getMario().getYPos() < b.getMap().length - 1 && b.getMap()[b.getMario().getYPos() + 1][b.getMario().getXPos()] == ' ') {
+	      try {
+          Thread.sleep(500);
+	      } catch (InterruptedException ex) {
+          Thread.currentThread().interrupt();
+	      }
+        b.fall();
+		b.goombaFall();
+        printBoard(b);
+	    }
+    }
+  }
+
+  private static void printBoard(Board b) {
+    char[][] m = b.getMap();
+    System.out.println("----------------");
+    for (int i = 0; i < m.length; i++) {
+      String row = "";
+      for (int j = 0; j < m[i].length; j++) {
+        row += m[i][j];
+      }
+      System.out.println(row);
+    }
+    System.out.println("----------------");
   }
 }
-}
-**/

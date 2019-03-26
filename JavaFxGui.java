@@ -32,8 +32,8 @@ public class JavaFxGui extends Application {
   Image marioJumpLeft = new Image("sprites/marioJumpLeft.png");
   Image block = new Image("sprites/block.png");
   Image bottomBlock = new Image("sprites/bottomBlock.png");
-  Image goomba= new Image("sprites/goomba.png");
-  
+  Image goomba = new Image("sprites/goomba.png");
+
   public static void main(String[] args) {
     launch(args);
   }
@@ -46,8 +46,8 @@ public class JavaFxGui extends Application {
     for (int i = 0; i < b.getMap().length; i++) {
       for (int j = 0; j < b.getMap()[0].length; j++){
         renderedBoard[i][j] = new ImageView();
-        renderedBoard[i][j].setLayoutY(i*80);
-        renderedBoard[i][j].setLayoutX(j*80);
+        renderedBoard[i][j].setLayoutY(i*32);
+        renderedBoard[i][j].setLayoutX(j*32);
 
       }
     }
@@ -62,27 +62,22 @@ public class JavaFxGui extends Application {
         root.getChildren().add(renderedBoard[i][j]);
       }
     }
-    Scene scene = new Scene(root, b.getMap()[0].length * 80, b.getMap().length * 80);
+    Scene scene = new Scene(root, b.getMap()[0].length * 32, b.getMap().length * 32);
     // Process keyboard input and automatically update the rendered image
 
     scene.setOnKeyPressed(e -> {
       String input = e.getCode().toString();
       switch (input) {
         case "Q":  b.moveUpLeft();
-				   b.goombaMove();
         break;
         case "W":
         case "SPACE":  b.jump();
-					   b.goombaMove();
         break;
         case "E":  b.moveUpRight();
-				   b.goombaMove();
         break;
         case "A":  b.moveLeft();
-				   b.goombaMove();
         break;
         case "D":  b.moveRight();
-				   b.goombaMove();
         break;
       }
 
@@ -98,7 +93,6 @@ public class JavaFxGui extends Application {
               Thread.currentThread().interrupt();
             }
             b.fall();
-			b.goombaFall();
             updateRender();
           }
 
@@ -110,7 +104,6 @@ public class JavaFxGui extends Application {
                 Thread.currentThread().interrupt();
               }
               b.fall();
-			  b.goombaFall();
               updateRender();
             }
           }
@@ -137,8 +130,8 @@ public class JavaFxGui extends Application {
                     break;
           case 'e': renderedBoard[i][j].setImage(marioJumpRight);
                     break;
-		  case 'g': renderedBoard[i][j].setImage(goomba);
-					break;
+          case 'g': renderedBoard[i][j].setImage(goomba);
+          			break;
           case ' ': renderedBoard[i][j].setImage(null);
                     break;
           

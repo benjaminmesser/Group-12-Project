@@ -149,8 +149,12 @@ public class Board {
 		String direction="left";
 		if (map[g.getYPos()][g.getXPos() + 1] != ' ') {
 			direction="left";
-		} else if (map[g.getYPos()][g.getXPos() - 1] != ' ') {
+		} 
+		else if (map[g.getYPos()][g.getXPos() - 1] != ' ') {
 			direction = "right";
+		}
+		else{
+			direction="right";
 		}
 	  return direction;
 	}

@@ -31,15 +31,20 @@ public class RunGame {
 
       switch (command) {
         case 'q':  b.moveUpLeft();
+					b.goombaMove();
                    break;
         case 'w':
 	      case ' ':  b.jump();
+					b.goombaMove();
                    break;
         case 'e':  b.moveUpRight();
+					b.goombaMove();
                    break;
         case 'a':  b.moveLeft();
+					b.goombaMove();
                    break;
         case 'd':  b.moveRight();
+					b.goombaMove();
                    break;
       }
 	    printBoard(b);
@@ -50,6 +55,7 @@ public class RunGame {
           Thread.currentThread().interrupt();
 	      }
         b.fall();
+		b.goombaFall();
         printBoard(b);
 	    }
     }

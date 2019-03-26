@@ -3,14 +3,24 @@ public class Goomba extends Character {
 
   public Goomba(int x, int y) {
     super(x, y);
-    setHealth(1);
+    this.health=1;
+	super.setSprite('g');
+  }
+  
+  public Goomba(Goomba g){
+	super(g.getXPos(),g.getYPos());
+	this.health=g.health;
   }
 
-  public void setHealth(int aHealth) {
-    this.health = aHealth;
+  public void hurt () {
+    this.health -=1;
   }
 
   public int getHealth() {
     return this.health;
   }
+  
+
+  
+  
 }

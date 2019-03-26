@@ -33,6 +33,7 @@ public class JavaFxGui extends Application {
   Image block = new Image("sprites/block.png");
   Image bottomBlock = new Image("sprites/bottomBlock.png");
   Image goomba = new Image("sprites/goomba.png");
+  Image dirt= new Image("sprites/dirt.png");
 
   public static void main(String[] args) {
     launch(args);
@@ -121,6 +122,8 @@ public class JavaFxGui extends Application {
           case 'x': renderedBoard[i][j].setImage(block);
                     break;
           case 'b': renderedBoard[i][j].setImage(bottomBlock);
+					break;
+		  case 'u': renderedBoard[i][j].setImage(dirt);
 					break;
           case 'a': renderedBoard[i][j].setImage(marioLeft);
                     break;

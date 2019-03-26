@@ -23,8 +23,9 @@ public class Board {
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' '},
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', ' ', ' ', ' ', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' '},
             {' ', ' ', ' ', 'x', ' ', ' ', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', 'x', 'x', 'x', ' ', ' ', ' ',' ',' ',' '},
-			{'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', ' ','b','b','b'}};
-	p.setYPos(map.length - 2);
+			{'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', ' ','b','b','b'},
+			{'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', ' ','u','u','u'}};
+	p.setYPos(map.length - 3);
     return map;
   }
 
@@ -33,7 +34,7 @@ public class Board {
     int x = p.getXPos();
     int y = p.getYPos();
     this.map[y][x] = p.getSprite();
-	if(y==0){
+	if(y==map.length-1){
 		marioPit();
 	}
 	int gx = g.getXPos();
@@ -43,6 +44,10 @@ public class Board {
 
   public void marioPit(){
 	p.setHealth(p.getHealth()-1);
+	this.map[p.getYPos()][p.getXPos()]=' ';
+	p.setXPos(p.getXPos()-1);
+	p.setYPos(p.getYPos()-2);
+	updateMap();
   }
   public void moveLeft() {
     // checks to see if space is free to the left of the player's current position; if so, changes xPos accordingly.

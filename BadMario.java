@@ -66,6 +66,19 @@ public class BadMario extends Application {
 
     new AnimationTimer() {
       public void handle(long currentNanoTime) {
+        /*
+        // I could use a more useful time
+        long currentTime = System.nanoTime();
+
+        while (System.nanoTime() <= currentTime + 200000000) {
+          for (int i = 0; i < input.size(); i++) {
+            if (!input.contains(input.get(i))) {
+              input.add(input.get(i));
+            }
+          }
+        }
+        */
+
         // Handle input
         if (input.contains("Q")) b.moveUpLeft();
         if (input.contains("W") || input.contains("SPACE")) b.jump();
@@ -76,6 +89,32 @@ public class BadMario extends Application {
         renderGame(gc);
       }
     }.start();
+
+    new Timer().scheduleAtFixedRate(new TimerTask() {
+      public void run() {
+        while (b.getMario().getYPos() < b.getMap().length - 1 && b.getMap()[b.getMario().getYPos() + 1][b.getMario().getXPos()] == ' ') {
+          try {
+            Thread.sleep(200);
+          } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+          }
+          b.fall();
+          renderGame(gc);
+        }
+
+        if (b.getMario().getYPos() < b.getMap().length - 1){
+          if (b.getMap()[b.getMario().getYPos() + 1][b.getMario().getXPos()] == 'x' && (b.getMario().getSprite() == 'q' || b.getMario().getSprite() == 'e')){
+            try {
+              Thread.sleep(100);
+            } catch (InterruptedException ex) {
+              Thread.currentThread().interrupt();
+            }
+            b.fall();
+            renderGame(gc);
+          }
+        }
+      }
+    }, 100, 100);
 
     stage.show();
   }

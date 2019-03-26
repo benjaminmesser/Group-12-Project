@@ -21,7 +21,7 @@ public class Board {
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', ' ', ' ', ' ', 'x', 'x', 'x', 'x'},
             {'d', ' ', ' ', 'x', ' ', ' ', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x'},
             {'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'}};
-	p.setYPos(map.length - 1);
+	  p.setYPos(map.length - 1);
     return map;
   }
 
@@ -39,7 +39,7 @@ public class Board {
       if (map[p.getYPos()][p.getXPos() - 1] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() - 1);
-	p.setSprite('a');
+	      p.setSprite('a');
       }
     }
     updateMap();
@@ -52,7 +52,7 @@ public class Board {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() - 1);
         p.setYPos(p.getYPos() - 1);
-	p.setSprite('q');
+	      p.setSprite('q');
       }
     }
     updateMap();
@@ -64,7 +64,7 @@ public class Board {
       if (map[p.getYPos()][p.getXPos() + 1] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() + 1);
-	p.setSprite('d');
+	      p.setSprite('d');
       }
     }
     updateMap();
@@ -77,7 +77,7 @@ public class Board {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() + 1);
         p.setYPos(p.getYPos() - 1);
-	p.setSprite('e');
+	      p.setSprite('e');
       }
     }
     updateMap();
@@ -89,11 +89,11 @@ public class Board {
       if (map[p.getYPos() - 1][p.getXPos()] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setYPos(p.getYPos() - 1);
-	if (p.getSprite() == 'd'){
-		p.setSprite('e');
-	} else if (p.getSprite() == 'a'){
-		p.setSprite('q');
-	}
+	      if (p.getSprite() == 'd') {
+		      p.setSprite('e');
+	      } else if (p.getSprite() == 'a') {
+		      p.setSprite('q');
+	      }
       }
     }
     updateMap();
@@ -107,11 +107,11 @@ public class Board {
         p.setYPos(p.getYPos() + 1);
       }
     }
-	if (p.getSprite() == 'e'){
-		p.setSprite('d');
-	} else if (p.getSprite() == 'q'){
-		p.setSprite('a');
-	}
+	  if (p.getSprite() == 'e'){
+		  p.setSprite('d');
+	  } else if (p.getSprite() == 'q'){
+		  p.setSprite('a');
+	  }
 	  updateMap();
   }
 

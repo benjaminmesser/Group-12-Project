@@ -46,19 +46,9 @@ public class BadMario extends Application {
     Scene scene = new Scene(root);
     stage.setScene(scene);
 
-    for (int i = 0; i < b.getMap().length; i++) {
-      for (int j = 0; j < b.getMap()[0].length; j++){
-        renderedBoard[i][j] = new ImageView();
-        renderedBoard[i][j].setLayoutY(i*32);
-        renderedBoard[i][j].setLayoutX(j*32);
-      }
-    }
-
-
     // Need to add window size
     Canvas canvas = new Canvas(b.getMap()[0].length*32, b.getMap().length*32);
     root.getChildren().add(canvas);
-
 
     scene.setOnKeyPressed(e -> {
       String key = e.getCode().toString();
@@ -74,8 +64,6 @@ public class BadMario extends Application {
 
     GraphicsContext gc = canvas.getGraphicsContext2D();
 
-    // Add images to be used
-
     new AnimationTimer() {
       public void handle(long currentNanoTime) {
         // Handle input
@@ -85,32 +73,31 @@ public class BadMario extends Application {
         if (input.contains("A")) b.moveLeft();
         if (input.contains("D")) b.moveRight();
 
-        renderGame();
+        renderGame(gc);
       }
     }.start();
 
     stage.show();
   }
 
-  public void renderGame() {
+  public void renderGame(GraphicsContext gc) {
+    gc.clearRect(0, 0, b.getMap()[0].length*32, b.getMap().length*32);
     for (int i = 0; i < b.getMap().length; i++) {
       for (int j = 0; j < b.getMap()[i].length; j++) {
         switch (b.getMap()[i][j]) {
-          case 'x': renderedBoard[i][j].setImage(block);
+          case 'x': gc.drawImage(block, j*32, i*32);
                     break;
-          case 'a': renderedBoard[i][j].setImage(marioLeft);
+          case 'a': gc.drawImage(marioLeft, j*32, i*32);
                     break;
-          case 'd': renderedBoard[i][j].setImage(marioRight);
+          case 'd': gc.drawImage(marioRight, j*32, i*32);
                     break;
-          case 'q': renderedBoard[i][j].setImage(marioJumpLeft);
+          case 'q': gc.drawImage(marioJumpLeft, j*32, i*32);
                     break;
-          case 'e': renderedBoard[i][j].setImage(marioJumpRight);
+          case 'e': gc.drawImage(marioJumpRight, j*32, i*32);
                     break;
-          case ' ': renderedBoard[i][j].setImage(null);
-                    break;
+          case ' ': break;
           // Keeping these seperate for clarity
-          default:  renderedBoard[i][j].setImage(null);
-                    break;
+          default:  break;
         }
       }
     }

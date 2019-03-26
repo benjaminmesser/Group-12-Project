@@ -1,38 +1,38 @@
 public abstract class Entity {
-  private int xPos = 1;
-  private int yPos = 1;
+  private int xPos = 0;
+  private int yPos = p;
 
   public Entity(int x, int y) {
-    if (x > 0){
+    if (x >= 0){
       setXPos(x);
     }
     else{
-      setXPos(1);
+      setXPos(0);
     }
 
-    if (y > 0){
+    if (y >= 0){
       setYPos(y);
     }
     else{
-      setYPos(1);
+      setYPos(0);
     }
   }
   public Entity(Entity e){
-    if (e.xPos > 0){
+    if (e.xPos >= 0){
       this.xPos = e.xPos;
     }
-    if (e.yPos > 0){
+    if (e.yPos >= 0){
       this.yPos = e.yPos;
     }
   }
 
 
   public void setXPos(int x) {
-    if(x > 0){
+    if(x >= 0){
       this.xPos = x;
     }
     else{
-      this.xPos = 1;
+      this.xPos = 0;
     }
   }
 
@@ -41,11 +41,11 @@ public abstract class Entity {
   }
 
   public void setYPos(int y) {
-    if(y > 0){
+    if(y >= 0){
       this.yPos = y;
     }
     else{
-      this.yPos = 1;
+      this.yPos = 0;
     }
   }
 

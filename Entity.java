@@ -1,6 +1,6 @@
 public abstract class Entity {
   private int xPos = 0;
-  private int yPos = p;
+  private int yPos = 0;
 
   public Entity(int x, int y) {
     if (x >= 0){

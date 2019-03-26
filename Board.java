@@ -208,4 +208,9 @@ public class Board {
     Mario pp = new Mario(p);
     return pp;
   }
+	
+  public Goomba getGoomba(){
+	Goomba gg= new Goomba(g);
+	return gg;
+  }
 }

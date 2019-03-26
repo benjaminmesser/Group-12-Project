@@ -33,7 +33,7 @@ public class JavaFxGui extends Application {
   Image block = new Image("sprites/block.png");
   Image bottomBlock = new Image("sprites/bottomBlock.png");
   Image goomba = new Image("sprites/goomba.png");
-  Image coin = new Image("sprite/coin.png");
+  Image dirt= new Image("sprites/dirt.png");
 
   public static void main(String[] args) {
     launch(args);
@@ -49,6 +49,7 @@ public class JavaFxGui extends Application {
         renderedBoard[i][j] = new ImageView();
         renderedBoard[i][j].setLayoutY(i*32);
         renderedBoard[i][j].setLayoutX(j*32);
+
       }
     }
     updateRender();
@@ -122,6 +123,8 @@ public class JavaFxGui extends Application {
                     break;
           case 'b': renderedBoard[i][j].setImage(bottomBlock);
 					break;
+		  case 'u': renderedBoard[i][j].setImage(dirt);
+					break;
           case 'a': renderedBoard[i][j].setImage(marioLeft);
                     break;
           case 'd': renderedBoard[i][j].setImage(marioRight);
@@ -131,11 +134,10 @@ public class JavaFxGui extends Application {
           case 'e': renderedBoard[i][j].setImage(marioJumpRight);
                     break;
           case 'g': renderedBoard[i][j].setImage(goomba);
-          			    break;
-          case 'c': renderedBoard[i][j].setImage(coin);
-                    break;
+          			break;
           case ' ': renderedBoard[i][j].setImage(null);
                     break;
+          
           // Keeping these seperate for clarity
           default:  renderedBoard[i][j].setImage(null);
                     break;

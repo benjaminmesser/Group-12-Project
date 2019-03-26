@@ -7,7 +7,7 @@ public class Mario extends Character {
    * set the location of the player.
   */
   public Mario() {
-    super(0, 0);
+    super(1,4);
     setHealth(3);
     setCoins(0);
     // eventually change to automatically put player at the origin, once we find out where that is

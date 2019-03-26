@@ -22,7 +22,7 @@ public class Board {
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'c', 'c', ' ', ' ', ' ', ' ', ' ', ' ', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' '},
             {' ', ' ', ' ', 'c', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', 'c', 'c', 'c', ' ', ' ', ' ',' ',' ',' '},
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', ' ', ' ', ' ', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' '},
-            {' ', ' ', ' ', 'x', ' ', ' ', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', 'x', 'x', 'x', ' ', ' ', ' ',' ',' ','f'},
+            {' ', ' ', ' ', 'x', ' ', ' ', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', 'x', 'x', 'x', ' ', ' ', ' ',' ',' ',' '},
 			      {'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', ' ','b','b','b'},
 			      {'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', ' ','u','u','u'}};
 	  p.setYPos(map.length - 3);
@@ -146,11 +146,11 @@ public class Board {
   }
 
 	public String getDirection() {
-		String direction= "left";
+		String direction="left";
 		if (map[g.getYPos()][g.getXPos() + 1] != ' ') {
-			direction="right";
+			direction="left";
 		} else if (map[g.getYPos()][g.getXPos() - 1] != ' ') {
-			direction = "left";
+			direction = "right";
 		}
 	  return direction;
 	}
@@ -207,10 +207,12 @@ public class Board {
     //returns a copy of the player.
     Mario pp = new Mario(p);
     return pp;
-  }
-	
+  }  
   public Goomba getGoomba(){
 	Goomba gg= new Goomba(g);
 	return gg;
+  }
+  public int getHealth(){
+	return g.getHealth();
   }
 }

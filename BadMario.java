@@ -13,6 +13,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class BadMario extends Application {
+  private Board b = new Board();
+  ImageView[][] renderedBoard = new ImageView[b.getMap().length][b.getMap()[0].length];
+
+  ArrayList<String> input = new ArrayList<String>();
+
+  // Images to be used
+  Image marioRight = new Image();
+  Image marioLeft = new Image();
+  Image marioJumpRight = new Image();
+  Image marioJumpLeft = new Image();
+  Image grass = new Image();
+  Image qBlock = new Image();
+  Image goomba = new image();
+  Image coin = new Image();
+
+
   public static void main(String[] args) {
     launch(args);
   }
@@ -25,11 +41,20 @@ public class BadMario extends Application {
     Scene scene = new Scene(root);
     stage.setScene(scene);
 
+    for (int i = 0; i < b.getMap().length; i++) {
+      for (int j = 0; j < b.getMap()[0].length; j++){
+        renderedBoard[i][j] = new ImageView();
+        renderedBoard[i][j].setLayoutY(i*80);
+        renderedBoard[i][j].setLayoutX(j*80);
+
+      }
+    }
+
+
     // Need to add window size
     Canvas canvas = new Canvas(500, 500);
     root.getChildren().add(canvas);
 
-    ArrayList<String> input = new ArrayList<String>();
 
     scene.setOnKeyPressed(e -> {
       String key = e.getCode().toString();
@@ -57,6 +82,26 @@ public class BadMario extends Application {
   }
 
   public void renderGame() {
-
+    for (int i = 0; i < b.getMap().length; i++) {
+      for (int j = 0; j < b.getMap()[i].length; j++) {
+        switch (b.getMap()[i][j]) {
+          case 'x': renderedBoard[i][j].setImage(block);
+                    break;
+          case 'a': renderedBoard[i][j].setImage(marioLeft);
+                    break;
+          case 'd': renderedBoard[i][j].setImage(marioRight);
+                    break;
+          case 'q': renderedBoard[i][j].setImage(marioJumpLeft);
+                    break;
+          case 'e': renderedBoard[i][j].setImage(marioJumpRight);
+                    break;
+          case ' ': renderedBoard[i][j].setImage(null);
+                    break;
+          // Keeping these seperate for clarity
+          default:  renderedBoard[i][j].setImage(null);
+                    break;
+        }
+      }
+    }
   }
 }

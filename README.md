@@ -31,6 +31,10 @@ e - jump diagonally to the right
 # Running Automated Tests
 junit version 4.12 hamcrest core 1.3 are used for automated testing in Bad Mario. Tests are run in the character class which test for valid contructor parameter values and getter/setter method values.
 
+    java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore CharacterTest
+
+
+
 # Authors
 - Yifan Chen
 - Grace Heemeryck

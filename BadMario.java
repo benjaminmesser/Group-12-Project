@@ -134,6 +134,12 @@ public class BadMario extends Application {
                     break;
           case 'e': gc.drawImage(marioJumpRight, j*32, i*32);
                     break;
+          case 'b': gc.drawImage(grass, j*32, i*32);
+                    break;
+          case 'c': gc.drawImage(coin, j*32, i*32);
+                    break;
+          case 'g': gc.drawImage(goomba, j*32, i*32);
+                    break;
           case ' ': break;
           // Keeping these seperate for clarity
           default:  break;

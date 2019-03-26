@@ -15,14 +15,14 @@ public class Board {
   public char[][] createMap() {
     // draw map here, whoever wants to do that.
     map = new char[][] {
-	    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+	          {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'c', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'c', 'c', ' ', ' ', ' ', ' ', ' ', ' ', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'c', ' ', ' ', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', ' ', ' ', ' ', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-            {' ', ' ', ' ', 'x', ' ', ' ', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', 'x', 'x', 'x', ' ', ' ', ' '},
-	    {'b', 'b', 'b', 'x', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'}};
-	p.setYPos(map.length - 2);
+            {' ', 'd', ' ', 'x', ' ', ' ', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', 'x', 'x', 'x', ' ', ' ', ' '},
+	          {'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'}};
+	  p.setYPos(map.length - 2);
     return map;
   }
 
@@ -41,6 +41,11 @@ public class Board {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() - 1);
 	      p.setSprite('a');
+      } else if (map[p.getYPos()][p.getXPos() - 1] == 'c') {
+        this.map[p.getYPos()][p.getXPos()] = ' ';
+        p.setXPos(p.getXPos() - 1);
+        p.setSprite('a');
+        p.addCoin();
       }
     }
     updateMap();
@@ -54,6 +59,12 @@ public class Board {
         p.setXPos(p.getXPos() - 1);
         p.setYPos(p.getYPos() - 1);
 	      p.setSprite('q');
+      } else if (map[p.getYPos() - 1][p.getXPos() - 1] == 'c') {
+        this.map[p.getYPos()][p.getXPos()] = ' ';
+        p.setXPos(p.getXPos() - 1);
+        p.setYPos(p.getXPos() - 1);
+        p.setSprite('q');
+        p.addCoin();
       }
     }
     updateMap();
@@ -66,6 +77,11 @@ public class Board {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() + 1);
 	      p.setSprite('d');
+      } else if (map[p.getYPos()][p.getXPos() + 1] == 'c') {
+        this.map[p.getYPos()][p.getXPos() + 1] = ' ';
+        p.setXPos(p.getXPos() + 1);
+        p.setSprite('d');
+        p.addCoin();
       }
     }
     updateMap();
@@ -80,7 +96,13 @@ public class Board {
 				  p.setXPos(p.getXPos() + 1);
 				  p.setYPos(p.getYPos() - 1);
 				  p.setSprite('e');
-			  }
+			  } else if (map[p.getYPos() - 1][p.getXPos() + 1] == 'c') {
+          this.map[p.getYPos()][p.getXPos()] = ' ';
+          p.setXPos(p.getXPos() + 1);
+          p.setYPos(p.getYPos() - 1);
+          p.setSprite('e');
+          p.addCoin();
+        }
 		  }
     }
     updateMap();
@@ -89,14 +111,25 @@ public class Board {
    public void jump() {
     // checks to see if space is free above the player's current position; if so, changes yPos accordingly.
     if (p.getYPos() - 1 >= 0) {
-      if (map[p.getYPos() - 1][p.getXPos()] == ' ') {
-        this.map[p.getYPos()][p.getXPos()] = ' ';
-        p.setYPos(p.getYPos() - 1);
-	      if (p.getSprite() == 'd') {
-		      p.setSprite('e');
-	      } else if (p.getSprite() == 'a') {
-		      p.setSprite('q');
-	      }
+      if (map[p.getYPos() + 1][p.getXPos()] != ' ') {
+        if (map[p.getYPos() - 1][p.getXPos()] == ' ') {
+          this.map[p.getYPos()][p.getXPos()] = ' ';
+          p.setYPos(p.getYPos() - 1);
+	        if (p.getSprite() == 'd') {
+		        p.setSprite('e');
+	        } else if (p.getSprite() == 'a') {
+		        p.setSprite('q');
+	        }
+        } else if (map[p.getYPos() - 1][p.getXPos()] == 'c') {
+          this.map[p.getYPos()][p.getXPos()] = ' ';
+          p.setYPos(p.getYPos() - 1);
+	        if (p.getSprite() == 'd') {
+		        p.setSprite('e');
+	        } else if (p.getSprite() == 'a') {
+		        p.setSprite('q');
+	        }
+          p.addCoin();
+        }
       }
     }
     updateMap();
@@ -109,6 +142,10 @@ public class Board {
       if (map[p.getYPos() + 1][p.getXPos()] == ' ') {
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setYPos(p.getYPos() + 1);
+      } else if (map[p.getYPos() + 1][p.getXPos()] == 'c') {
+        this.map[p.getYPos()][p.getXPos()] = ' ';
+        p.setYPos(p.getYPos() + 1);
+        p.addCoin();
       }
     }
 	  if (p.getSprite() == 'e'){

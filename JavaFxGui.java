@@ -57,7 +57,7 @@ public class JavaFxGui extends Application {
 
     Pane root = new Pane();
     //set background color
-    //root.setBackground(new Background(new BackgroundFill(Color.DEEPSKYBLUE, null, null)));
+    root.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, null, null)));
     // add all the images to the scene
     for (int i = 0; i < renderedBoard.length; i++) {
       for (int j = 0; j < renderedBoard[i].length; j++) {

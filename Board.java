@@ -15,13 +15,14 @@ public class Board {
   public char[][] createMap() {
     // draw map here, whoever wants to do that.
     map = new char[][] {
-            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x'},
-            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x'},
-            {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', ' ', ' ', ' ', 'x', 'x', 'x', 'x'},
-            {'d', ' ', ' ', 'x', ' ', ' ', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x'},
-            {'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'}};
-	  p.setYPos(map.length - 1);
+	    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', ' ', ' ', ' ', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', 'x', ' ', ' ', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', 'x', 'x', 'x', ' ', ' ', ' '},
+	    {'b', 'b', 'b', 'x', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'}};
+	p.setYPos(map.length - 2);
     return map;
   }
 
@@ -73,17 +74,19 @@ public class Board {
   public void moveUpRight() {
     // checks to see if space is free above and to the right of the player's current position; if so, changes xPos accordingly.
     if (p.getXPos() + 1 < map[0].length && p.getYPos() - 1 >= 0) {
-      if (map[p.getYPos() - 1][p.getXPos() + 1] == ' ') {
-        this.map[p.getYPos()][p.getXPos()] = ' ';
-        p.setXPos(p.getXPos() + 1);
-        p.setYPos(p.getYPos() - 1);
-	      p.setSprite('e');
-      }
+		  if(map[p.getYPos() + 1][p.getXPos()] != ' '){
+			  if (map[p.getYPos() - 1][p.getXPos() + 1] == ' ') {
+				  this.map[p.getYPos()][p.getXPos()] = ' ';
+				  p.setXPos(p.getXPos() + 1);
+				  p.setYPos(p.getYPos() - 1);
+				  p.setSprite('e');
+			  }
+		  }
     }
     updateMap();
   }
 
-  public void jump() {
+   public void jump() {
     // checks to see if space is free above the player's current position; if so, changes yPos accordingly.
     if (p.getYPos() - 1 >= 0) {
       if (map[p.getYPos() - 1][p.getXPos()] == ' ') {
@@ -97,7 +100,8 @@ public class Board {
       }
     }
     updateMap();
-  }
+	}
+
 
   public void fall() {
     // checks to see if space is available below the player's current position; if so, changes yPos accordingly.

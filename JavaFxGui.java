@@ -35,6 +35,7 @@ public class JavaFxGui extends Application {
   Image goomba = new Image("sprites/goomba.png");
   Image dirt = new Image("sprites/dirt.png");
   Image coin = new Image("sprites/coin.png");
+  Image flag = new Image("sprites/flag.png");
 
   public static void main(String[] args) {
     launch(args);
@@ -138,8 +139,11 @@ public class JavaFxGui extends Application {
           			    break;
           case 'c': renderedBoard[i][j].setImage(coin);
                     break;
+	  case 'f': renderedBoard[i][j].setImage(flag);
+			break;
           case ' ': renderedBoard[i][j].setImage(null);
                     break;
+			
           // Keeping these seperate for clarity
           default:  renderedBoard[i][j].setImage(null);
                     break;

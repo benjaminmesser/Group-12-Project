@@ -1,6 +1,5 @@
 public class Board {
   private Mario p;
-  private Goomba g;
   private char[][] map;
 
   /**
@@ -10,20 +9,20 @@ public class Board {
    */
   public Board() {
     this.p = new Mario();
-	this.g= new Goomba(5,4);
     this.map = createMap();
   }
 
   public char[][] createMap() {
     // draw map here, whoever wants to do that.
     map = new char[][] {
-            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x'},
-            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x'},
-            {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', ' ', ' ', ' ', 'x', 'x', 'x', 'x'},
-            {' ', ' ', ' ', 'x', ' ', ' ', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x'},
-            {'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'}};
-	p.setYPos(map.length - 1);
+			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', ' ', ' ', ' ', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', 'x', ' ', ' ', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', 'x', 'x', 'x', ' ', ' ', ' '},
+			{'b', 'b', 'b', 'x', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'}};
+	p.setYPos(map.length - 2);
     return map;
   }
 
@@ -32,9 +31,6 @@ public class Board {
     int x = p.getXPos();
     int y = p.getYPos();
     this.map[y][x] = p.getSprite();
-	int gx=g.getXPos();
-	int gy=g.getYPos();
-	this.map[gy][gx]=g.getSprite();
   }
 
   public void moveLeft() {
@@ -53,12 +49,14 @@ public class Board {
   public void moveUpLeft() {
     // checks to see if space is free above and to the left of the player's current position; if so, changes xPos accordingly.
     if (p.getXPos() - 1 >= 0 && p.getYPos() - 1 >= 0) {
-      if (map[p.getYPos() - 1][p.getXPos() - 1] == ' ') {
-        this.map[p.getYPos()][p.getXPos()] = ' ';
-        p.setXPos(p.getXPos() - 1);
-        p.setYPos(p.getYPos() - 1);
-	p.setSprite('q');
-      }
+		if(map[p.getYPos() + 1][p.getXPos()] != ' '){
+		if (map[p.getYPos() - 1][p.getXPos() - 1] == ' ') {
+			this.map[p.getYPos()][p.getXPos()] = ' ';
+			p.setXPos(p.getXPos() - 1);
+			p.setYPos(p.getYPos() - 1);
+			p.setSprite('q');
+		}
+		}	
     }
     updateMap();
   }
@@ -78,31 +76,37 @@ public class Board {
   public void moveUpRight() {
     // checks to see if space is free above and to the right of the player's current position; if so, changes xPos accordingly.
     if (p.getXPos() + 1 < map[0].length && p.getYPos() - 1 >= 0) {
-      if (map[p.getYPos() - 1][p.getXPos() + 1] == ' ') {
-        this.map[p.getYPos()][p.getXPos()] = ' ';
-        p.setXPos(p.getXPos() + 1);
-        p.setYPos(p.getYPos() - 1);
-	p.setSprite('e');
-      }
+		if(map[p.getYPos() + 1][p.getXPos()] != ' '){
+			if (map[p.getYPos() - 1][p.getXPos() + 1] == ' ') {
+				this.map[p.getYPos()][p.getXPos()] = ' ';
+				p.setXPos(p.getXPos() + 1);
+				p.setYPos(p.getYPos() - 1);
+				p.setSprite('e');
+			}
+		}
     }
     updateMap();
   }
 
-  public void jump() {
+   public void jump() {
     // checks to see if space is free above the player's current position; if so, changes yPos accordingly.
-    if (p.getYPos() - 1 >= 0) {
-      if (map[p.getYPos() - 1][p.getXPos()] == ' ') {
-        this.map[p.getYPos()][p.getXPos()] = ' ';
-        p.setYPos(p.getYPos() - 1);
-	if (p.getSprite() == 'd'){
-		p.setSprite('e');
-	} else if (p.getSprite() == 'a'){
-		p.setSprite('q');
-	}
-      }
-    }
+		if (p.getYPos() - 1 >= 0) {
+			if(map[p.getYPos() + 1][p.getXPos()] != ' '){
+				if (map[p.getYPos() - 1][p.getXPos()] == ' ') {
+					this.map[p.getYPos()][p.getXPos()] = ' ';
+					p.setYPos(p.getYPos() - 1);
+					if (p.getSprite() == 'd'){
+						p.setSprite('e');
+					} 
+					else if (p.getSprite() == 'a'){
+						p.setSprite('q');
+					}
+				}
+			}
+		}
     updateMap();
-  }
+	}
+	
 
   public void fall() {
     // checks to see if space is available below the player's current position; if so, changes yPos accordingly.
@@ -119,71 +123,7 @@ public class Board {
 	}
 	  updateMap();
   }
-  
-  public void goombaMove(){
-	String lastMove= "left";
-	goombaDeath();
-	if(map[g.getYPos()][g.getXPos() - 1] == ' ' && lastMove=="left"){
-		goombaMoveLeft();
-		goombaFall();
-		lastMove="left";
-	}
-	else if(map[g.getYPos()][g.getXPos() + 1] == ' '&& lastMove=="right"){
-		goombaMoveRight();
-		lastMove="right";
-	}
-	else if(map[g.getYPos()][g.getXPos() - 1] != ' ' || g.getXPos()-1 <0 ){
-		goombaMoveRight();
-		goombaFall();
-		lastMove="right";
-	}
-	
-	else if (map[g.getYPos()][g.getXPos() + 1] != ' '){
-		goombaMoveLeft();
-		goombaFall();
-		lastMove="left";
-	}
-  }
-  
-  public void goombaMoveLeft(){
-	if (g.getXPos() - 1 < map[0].length) {
-      if (map[g.getYPos()][g.getXPos() - 1] == ' ') {
-        this.map[g.getYPos()][g.getXPos()] = ' ';
-        g.setXPos(g.getXPos() - 1);
-		
-      }
-    }
-    updateMap();
-  }
-  
-  public void goombaMoveRight(){
-   if (g.getXPos() + 1 < map[0].length) {
-      if (map[g.getYPos()][g.getXPos() + 1] == ' ') {
-        this.map[g.getYPos()][g.getXPos()] = ' ';
-        g.setXPos(g.getXPos() + 1);
-      }
-    }
-	g.setSprite('g');
-    updateMap();
-  }
-  
-  public void goombaFall(){
-	if (g.getYPos() + 1 < map.length) {
-      if (map[g.getYPos() + 1][g.getXPos()] == ' ') {
-        this.map[g.getYPos()][g.getXPos()] = ' ';
-        p.setYPos(g.getYPos() + 1);
-      }
-    }
-  }
 
-  public void goombaDeath(){
-  //tests to see if player is on top
-      if (map[g.getYPos() - 1][g.getXPos()] == 'p') {
-		g.hurt();
-        this.map[g.getYPos()][g.getXPos()] = ' ';
-      }
-   
-  }
   public char[][] getMap() {
     //returns a copy of the map.
     char[][] mapClone = new char[map.length][map[0].length];

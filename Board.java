@@ -83,7 +83,7 @@ public class Board {
   public void moveRight() {
     // checks to see if space is free to the right of the player's current position; if so, changes xPos accordingly.
     if (p.getXPos() + 1 < map[0].length) {
-      if (map[p.getYPos()][p.getXPos() + 1] == ' ' || map[p.getYPos()][p.getXPos() + 1] == 'c') {
+      if (map[p.getYPos()][p.getXPos() + 1] == ' ' || map[p.getYPos()][p.getXPos() + 1] == 'c' || map[p.getYPos()][p.getXPos() + 1] == 'f') {
         if (map[p.getYPos()][p.getXPos() + 1] == 'c') p.addCoin();
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setXPos(p.getXPos() + 1);
@@ -131,7 +131,7 @@ public class Board {
   public void fall() {
     // checks to see if space is available below the player's current position; if so, changes yPos accordingly.
     if (p.getYPos() + 1 < map.length) {
-      if (map[p.getYPos() + 1][p.getXPos()] == ' ' || map[p.getYPos() + 1][p.getXPos()] == 'c') {
+      if (map[p.getYPos() + 1][p.getXPos()] == ' ' || map[p.getYPos() + 1][p.getXPos()] == 'c' || map[p.getYPos() + 1][p.getXPos()] == 'f') {
         if (map[p.getYPos() + 1][p.getXPos()] == 'c') p.addCoin();
         this.map[p.getYPos()][p.getXPos()] = ' ';
         p.setYPos(p.getYPos() + 1);
@@ -208,7 +208,7 @@ public class Board {
     Mario pp = new Mario(p);
     return pp;
   }
-	
+
   public Goomba getGoomba(){
 	Goomba gg= new Goomba(g);
 	return gg;

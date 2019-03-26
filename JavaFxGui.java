@@ -33,9 +33,8 @@ public class JavaFxGui extends Application {
   Image block = new Image("sprites/block.png");
   Image bottomBlock = new Image("sprites/bottomBlock.png");
   Image goomba = new Image("sprites/goomba.png");
-  Image dirt = new Image("sprites/dirt.png");
+  Image dirt= new Image("sprites/dirt.png");
   Image coin = new Image("sprites/coin.png");
-  Image flag = new Image("sprites/flag.png");
 
   public static void main(String[] args) {
     launch(args);
@@ -72,6 +71,7 @@ public class JavaFxGui extends Application {
       String input = e.getCode().toString();
       switch (input) {
         case "Q":  b.moveUpLeft();
+				   b.goombaMove();
         break;
         case "W":
         case "SPACE":  b.jump();
@@ -88,18 +88,18 @@ public class JavaFxGui extends Application {
     });
 
     new Timer().scheduleAtFixedRate(new TimerTask() {
-      public void run() {
+    public void run() {
         while (b.getMario().getYPos() < b.getMap().length - 1 && b.getMap()[b.getMario().getYPos() + 1][b.getMario().getXPos()] == ' ') {
-          try {
-            Thread.sleep(200);
-          } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-          }
+            try {
+              Thread.sleep(200);
+            } catch (InterruptedException ex) {
+              Thread.currentThread().interrupt();
+            }
             b.fall();
             updateRender();
           }
 
-          if (b.getMario().getYPos() < b.getMap().length - 1){
+      if (b.getMario().getYPos() < b.getMap().length - 1){
             if (b.getMap()[b.getMario().getYPos() + 1][b.getMario().getXPos()] == 'x' && (b.getMario().getSprite() == 'q' || b.getMario().getSprite() == 'e')){
               try {
                 Thread.sleep(100);
@@ -110,13 +110,31 @@ public class JavaFxGui extends Application {
               updateRender();
             }
           }
-       }
+        }
     }, 100, 100);
-    
+	
+	new Timer().scheduleAtFixedRate(new TimerTask() {
+		public void run() {
+			while (b.getHealth()!=0) {
+				try {
+					Thread.sleep(200);
+				} 
+				catch (InterruptedException ex) {
+					Thread.currentThread().interrupt();
+				}
+			b.goombaMove();
+			b.goombaFall();
+            updateRender();
+            }
+		}
+	},100, 100);
     stage.setScene(scene);
     stage.show();
-  }
+	
 
+
+  }
+  
   private void updateRender() {
     for (int i = 0; i < b.getMap().length; i++) {
       for (int j = 0; j < b.getMap()[i].length; j++) {
@@ -124,9 +142,9 @@ public class JavaFxGui extends Application {
           case 'x': renderedBoard[i][j].setImage(block);
                     break;
           case 'b': renderedBoard[i][j].setImage(bottomBlock);
-					          break;
-		      case 'u': renderedBoard[i][j].setImage(dirt);
-					          break;
+					break;
+		  case 'u': renderedBoard[i][j].setImage(dirt);
+					break;
           case 'a': renderedBoard[i][j].setImage(marioLeft);
                     break;
           case 'd': renderedBoard[i][j].setImage(marioRight);
@@ -136,14 +154,12 @@ public class JavaFxGui extends Application {
           case 'e': renderedBoard[i][j].setImage(marioJumpRight);
                     break;
           case 'g': renderedBoard[i][j].setImage(goomba);
-          			    break;
-          case 'c': renderedBoard[i][j].setImage(coin);
+          			break;	
+		  case 'c': renderedBoard[i][j].setImage(coin);
                     break;
-	  case 'f': renderedBoard[i][j].setImage(flag);
-			break;
           case ' ': renderedBoard[i][j].setImage(null);
                     break;
-			
+          
           // Keeping these seperate for clarity
           default:  renderedBoard[i][j].setImage(null);
                     break;

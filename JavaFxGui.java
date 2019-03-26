@@ -16,7 +16,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.geometry.Insets;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -24,6 +24,7 @@ import java.util.TimerTask;
 public class JavaFxGui extends Application {
   private Board b = new Board();
   ImageView[][] renderedBoard = new ImageView[b.getMap().length][b.getMap()[0].length];
+  Label coinsAmount = new Label();
 
   // Images to be used for the render
   Image marioRight = new Image("sprites/marioRight.png");
@@ -50,7 +51,6 @@ public class JavaFxGui extends Application {
         renderedBoard[i][j] = new ImageView();
         renderedBoard[i][j].setLayoutY(i*32);
         renderedBoard[i][j].setLayoutX(j*32);
-
       }
     }
     updateRender();
@@ -64,6 +64,7 @@ public class JavaFxGui extends Application {
         root.getChildren().add(renderedBoard[i][j]);
       }
     }
+    root.getChildren().add(coinsAmount);
     Scene scene = new Scene(root, b.getMap()[0].length * 32, b.getMap().length * 32);
     // Process keyboard input and automatically update the rendered image
 
@@ -71,17 +72,16 @@ public class JavaFxGui extends Application {
       String input = e.getCode().toString();
       switch (input) {
         case "Q":  b.moveUpLeft();
-				   b.goombaMove();
-        break;
+                   break;
         case "W":
         case "SPACE":  b.jump();
-        break;
+                   break;
         case "E":  b.moveUpRight();
-        break;
+                   break;
         case "A":  b.moveLeft();
-        break;
+                   break;
         case "D":  b.moveRight();
-        break;
+                   break;
       }
 
       updateRender();
@@ -112,13 +112,14 @@ public class JavaFxGui extends Application {
           }
         }
     }, 100, 100);
-	
+
+    /*
 	new Timer().scheduleAtFixedRate(new TimerTask() {
 		public void run() {
 			while (b.getHealth()!=0) {
 				try {
 					Thread.sleep(200);
-				} 
+				}
 				catch (InterruptedException ex) {
 					Thread.currentThread().interrupt();
 				}
@@ -128,13 +129,12 @@ public class JavaFxGui extends Application {
             }
 		}
 	},100, 100);
+    */
+
     stage.setScene(scene);
     stage.show();
-	
-
-
   }
-  
+
   private void updateRender() {
     for (int i = 0; i < b.getMap().length; i++) {
       for (int j = 0; j < b.getMap()[i].length; j++) {
@@ -142,9 +142,9 @@ public class JavaFxGui extends Application {
           case 'x': renderedBoard[i][j].setImage(block);
                     break;
           case 'b': renderedBoard[i][j].setImage(bottomBlock);
-					break;
-		  case 'u': renderedBoard[i][j].setImage(dirt);
-					break;
+					          break;
+		      case 'u': renderedBoard[i][j].setImage(dirt);
+					          break;
           case 'a': renderedBoard[i][j].setImage(marioLeft);
                     break;
           case 'd': renderedBoard[i][j].setImage(marioRight);
@@ -154,17 +154,17 @@ public class JavaFxGui extends Application {
           case 'e': renderedBoard[i][j].setImage(marioJumpRight);
                     break;
           case 'g': renderedBoard[i][j].setImage(goomba);
-          			break;	
-		  case 'c': renderedBoard[i][j].setImage(coin);
+          			    break;
+		      case 'c': renderedBoard[i][j].setImage(coin);
                     break;
           case ' ': renderedBoard[i][j].setImage(null);
                     break;
-          
           // Keeping these seperate for clarity
           default:  renderedBoard[i][j].setImage(null);
                     break;
         }
       }
     }
+    coinsAmount.setText("Coins: " + b.getMario().getCoins());
   }
 }

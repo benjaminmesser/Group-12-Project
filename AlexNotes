@@ -1,0 +1,91 @@
+public class board
+{
+    public void handleCollisions()
+    {
+
+    }
+}
+
+game loop:
+
+new AnimationTimer() {
+      public void handle(long currentNanoTime) {
+
+        handleInput();
+        handleGravity();
+        updatePositions();
+        b.handleCollisions();
+        renderGame(gc);
+      }
+    }.start();
+
+
+//BadMario.java
+public void updatePositions()
+{
+    for (each character c)
+    {
+        c.setXPos(c.getXPos() +c.getXVelocity());
+    }
+}
+
+//BadMario.java
+handleGravity()
+{
+    for (each character c)
+    {
+        if (c.isGrounded)
+            c.setYVel(c.getYVelocity()-?);
+    }
+}
+
+//BadMario.java
+public void handleInput()
+{
+     if (input.contains("Q")) b.moveUpLeft();
+        if (input.contains("W") || input.contains("SPACE")) b.getCharacter().jump();
+        if (input.contains("E")) b.moveUpRight();
+        if (input.contains("A")) b.moveLeft();
+        if (input.contains("D")) b.moveRight();
+}
+
+//Board.java
+public void handleCollisions()
+{
+     //n^2 brute force collision detection
+     for (each character C)
+     {
+          (for all other Entities e except c)
+        {
+            int cXPos = c.getXPos();
+            int cYPos = c.getYPos();
+            int eXPos = e.getXPos();
+            int eYPos = e.getYPos();
+
+            //
+            char collisionFace; //'W', 'A', 'S', 'D', 'N'
+            if(//do collision math)
+            {
+                //do math
+                collisionFace = ...; 
+            }
+            if (collisionFace != 'N')
+            {
+                if (Im waluigi and E is brick)
+                {
+                    //...
+                }
+                else if (Im goomba and E is waluigi)
+                {
+                    
+                }
+                else if (Im waluigi and E is goomba)
+                {
+
+                }
+                //etc
+            }
+            
+        }
+     }
+}

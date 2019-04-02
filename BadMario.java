@@ -66,18 +66,7 @@ public class BadMario extends Application {
 
     new AnimationTimer() {
       public void handle(long currentNanoTime) {
-        /*
-        // I could use a more useful time
-        long currentTime = System.nanoTime();
 
-        while (System.nanoTime() <= currentTime + 200000000) {
-          for (int i = 0; i < input.size(); i++) {
-            if (!input.contains(input.get(i))) {
-              input.add(input.get(i));
-            }
-          }
-        }
-        */
 
         // Handle input
         if (input.contains("Q")) b.moveUpLeft();

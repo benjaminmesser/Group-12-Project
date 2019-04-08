@@ -6,8 +6,8 @@ public class Mario extends Character {
    * This class stores information about the player's location on the map. It has a copy constructor and has methods to retrieve and
    * set the location of the player.
   */
-  public Mario() {
-    super(1,4);
+  public Mario(int x, int y) {
+    super(x, y);
     setHealth(3);
     setCoins(0);
     // eventually change to automatically put player at the origin, once we find out where that is
@@ -37,5 +37,9 @@ public class Mario extends Character {
 
   public void addCoin() {
     this.coins += 1;
+  }
+
+  public String getType() {
+    return "Mario";
   }
 }

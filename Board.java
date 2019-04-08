@@ -104,7 +104,7 @@ public class Board {
           charYPos = characters.get(i).getYPos();
           entXPos = entities.get(j).getXPos();
           entYPos = entities.get(j).getYPos();
-            // Find collision face
+          // Find collision face
           if ((charYPos <= entYPos && charYPos + 32 >= entYPos) && (charYPos + 32 - entYPos <= charXPos + 32 - entXPos) && (charYPos + 32 - entYPos <= entXPos + 32 - charXPos)) {
             collisionFace = 'B';
           } else if ((charYPos >= entYPos && charYPos <= entYPos + 32) && (entYPos + 32 - charYPos <= charXPos + 32 - entXPos) && (entYPos + 32 - charYPos <= entXPos + 32 - charXPos)) {
@@ -125,31 +125,32 @@ public class Board {
               continue;
             }
           }
-          if (collisionFace == 'T') {
-            if (entities.get(j).isCollideable()) {
-              characters.get(i).setYVelocity(0);
-              // Move character
-              characters.get(i).setYPos(entYPos + 32);
-            }
-          } else if (collisionFace == 'B') {
-            if (entities.get(j).isCollideable()) {
-              characters.get(i).setGrounded(true);
-              characters.get(i).setYVelocity(0);
-              // Move character
-              characters.get(i).setYPos(entYPos - 32);
-            }
-          } else if (collisionFace == 'L') {
-            if (entities.get(j).isCollideable()) {
-              characters.get(i).setXVelocity(0);
-              // Move character
-              characters.get(i).setXPos(entXPos + 32);
-            }
-          } else if (collisionFace == 'R') {
-            if (entities.get(j).isCollideable()) {
-              characters.get(i).setXVelocity(0);
-              // Move character
-              characters.get(i).setXPos(entXPos - 32);
-            }
+          switch (collisionFace) {
+            case 'T':
+              if (entities.get(j).isCollideable()) {
+                characters.get(i).setYVelocity(0);
+                characters.get(i).setYPos(entYPos + 32);
+              }
+              break;
+            case 'B':
+              if (entities.get(j).isCollideable()) {
+                characters.get(i).setGrounded(true);
+                characters.get(i).setYVelocity(0);
+                characters.get(i).setYPos(entYPos - 32);
+              }
+              break;
+            case 'L':
+              if (entities.get(j).isCollideable()) {
+                characters.get(i).setXVelocity(0);
+                characters.get(i).setXPos(entXPos + 32);
+              }
+              break;
+            case 'R':
+              if (entities.get(j).isCollideable()) {
+                characters.get(i).setXVelocity(0);
+                characters.get(i).setXPos(entXPos - 32);
+              }
+              break;
           }
         }
       }

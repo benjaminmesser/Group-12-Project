@@ -25,7 +25,7 @@ public void updatePositions()
 {
     for (each character c)
     {
-        c.setXPos(c.getXPos() +c.getXVelocity());
+        c.setXPos(c.getXPos() + c.getXVelocity());
     }
 }
 
@@ -67,7 +67,7 @@ public void handleCollisions()
             if(//do collision math)
             {
                 //do math
-                collisionFace = ...; 
+                collisionFace = ...;
             }
             if (collisionFace != 'N')
             {
@@ -77,7 +77,7 @@ public void handleCollisions()
                 }
                 else if (Im goomba and E is waluigi)
                 {
-                    
+
                 }
                 else if (Im waluigi and E is goomba)
                 {
@@ -85,7 +85,7 @@ public void handleCollisions()
                 }
                 //etc
             }
-            
+
         }
      }
 }

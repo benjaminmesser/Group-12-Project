@@ -1,16 +1,31 @@
 public class Block extends Entity {
-  private boolean collision;
+  public String type;
 
-  public Block(int x, int y, boolean collideable) {
+  public Block(int x, int y, String type) {
     super(x, y);
-    setCollision(collideable);
+    setType(type);
   }
 
-  public void setCollision(boolean collideable) {
-    this.collision = collideable;
+  public void setType(String t) {
+    switch (t) {
+      case "Coin":
+        super.setCollision(false);
+      case "Dirt":
+      case "Grass":
+      case "Block":
+      case "QuestionBlock":
+        this.type = t;
+        break;
+      default:
+        this.type = "Undefined";
+    }
   }
 
-  public boolean getCollision() {
-    return this.collision;
+  public String getType() {
+    return this.type;
+  }
+
+  public String getMainClass() {
+    return "Block";
   }
 }

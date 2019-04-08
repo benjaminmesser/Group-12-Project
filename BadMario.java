@@ -19,8 +19,8 @@ import javafx.stage.Stage;
 public class BadMario extends Application {
   // Movement constants, feel free to change these to what you think feels the best
   // Y-Values are inverted
-  private final int HORIZONTAL_VELOCITY = 8;
-  private final int JUMP_VELOCITY = -40;
+  private final int HORIZONTAL_VELOCITY = 5;
+  private final int JUMP_VELOCITY = -30;
   private final int GRAVITY = 8;
   // FPS for the game's display
   private final int REFRESH_RATE = 60;
@@ -128,7 +128,17 @@ public class BadMario extends Application {
           gc.drawImage(qBlock, b.getEntities().get(i).getXPos(), b.getEntities().get(i).getYPos());
           break;
         case "Mario":
-          gc.drawImage(marioRight, b.getEntities().get(i).getXPos(), b.getEntities().get(i).getYPos());
+          if (((Mario)b.getEntities().get(i)).getSprite().equals("Right")) {
+            gc.drawImage(marioRight, b.getEntities().get(i).getXPos(), b.getEntities().get(i).getYPos());
+          } else if (((Mario)b.getEntities().get(i)).getSprite().equals("Left")){
+            gc.drawImage(marioLeft, b.getEntities().get(i).getXPos(), b.getEntities().get(i).getYPos());
+          } else if (((Mario)b.getEntities().get(i)).getSprite().equals("JumpLeft")){
+            gc.drawImage(marioJumpLeft, b.getEntities().get(i).getXPos(), b.getEntities().get(i).getYPos());
+          } else if (((Mario)b.getEntities().get(i)).getSprite().equals("JumpRight")){
+            gc.drawImage(marioJumpRight, b.getEntities().get(i).getXPos(), b.getEntities().get(i).getYPos());
+          } else {
+            gc.drawImage(block, b.getEntities().get(i).getXPos(), b.getEntities().get(i).getYPos());
+          }
           break;
         case "Goomba":
           gc.drawImage(goomba, b.getEntities().get(i).getXPos(), b.getEntities().get(i).getYPos());
@@ -148,11 +158,24 @@ public class BadMario extends Application {
       if (b.getCharacters().get(i).getType() == "Mario" && first) {
         if ((input.contains("W") || input.contains("SPACE")) && b.getCharacters().get(i).isGrounded()) {
           b.getCharacters().get(i).addYVelocity(JUMP_VELOCITY);
+          // change sprite here...?
+          if (((Mario)b.getCharacters().get(i)).getSprite().equals("Left")){
+            ((Mario)b.getCharacters().get(i)).setSprite("JumpLeft");
+          }
+          if (((Mario)b.getCharacters().get(i)).getSprite().equals("Right")){
+            ((Mario)b.getCharacters().get(i)).setSprite("JumpRight");
+          }
           if (input.contains("W")) input.remove("W");
           if (input.contains("SPACE")) input.remove("SPACE");
         }
-        if (input.contains("A")) b.getCharacters().get(i).setXVelocity(-HORIZONTAL_VELOCITY);
-        if (input.contains("D")) b.getCharacters().get(i).setXVelocity(HORIZONTAL_VELOCITY);
+        if (input.contains("A")) {
+          b.getCharacters().get(i).setXVelocity(-HORIZONTAL_VELOCITY);
+          ((Mario)b.getCharacters().get(i)).setSprite("Left");
+        }
+        if (input.contains("D")){
+           b.getCharacters().get(i).setXVelocity(HORIZONTAL_VELOCITY);
+           ((Mario)b.getCharacters().get(i)).setSprite("Right");
+        }
         if (!input.contains("A") && !input.contains("D")) b.getCharacters().get(i).setXVelocity(0);
       } else if (b.getCharacters().get(i).getType() == "Mario") {
         if (input.contains("I") && b.getCharacters().get(i).isGrounded()) {
@@ -170,6 +193,20 @@ public class BadMario extends Application {
     for (int i = 0; i < b.getCharacters().size(); i++) {
       if (!b.getCharacters().get(i).isGrounded()) {
         b.getCharacters().get(i).addYVelocity(GRAVITY);
+      }
+      if (b.getCharacters().get(i).getType() == "Mario" && b.getCharacters().get(i).isGrounded()){
+        if (((Mario)b.getCharacters().get(i)).getSprite() == "JumpLeft"){
+          ((Mario)b.getCharacters().get(i)).setSprite("Left");
+        } else if (((Mario)b.getCharacters().get(i)).getSprite() == "JumpRight"){
+          ((Mario)b.getCharacters().get(i)).setSprite("Right");
+        }
+      }
+      if (b.getCharacters().get(i).getType() == "Mario" && !b.getCharacters().get(i).isGrounded()){
+        if (((Mario)b.getCharacters().get(i)).getSprite() == "Left"){
+          ((Mario)b.getCharacters().get(i)).setSprite("JumpLeft");
+        } else if (((Mario)b.getCharacters().get(i)).getSprite() == "Right"){
+          ((Mario)b.getCharacters().get(i)).setSprite("JumpRight");
+        }
       }
     }
   }

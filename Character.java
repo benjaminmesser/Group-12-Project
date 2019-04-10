@@ -1,5 +1,5 @@
 public class Character extends Entity {
-  private int xVelocity = 0;
+  private int xVelocity = 1;
   private int yVelocity = 0;
   private boolean grounded = false;
 

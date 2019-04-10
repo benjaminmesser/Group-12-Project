@@ -10,7 +10,7 @@ public class Board {
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'c', 'c', ' ', ' ', ' ', ' ', ' ', ' ', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' '},
     {' ', ' ', ' ', 'c', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', 'c', 'c', 'c', ' ', ' ', ' ',' ',' ',' '},
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', ' ', ' ', ' ', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' '},
-    {' ', 'd', ' ', 'x', ' ', 'g', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', 'x', 'x', 'x', ' ', ' ', ' ',' ',' ',' '},
+    {' ', 'd', 'x', ' ', ' ', 'g', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', 'x', 'x', 'x', ' ', ' ', ' ',' ','d',' '},
     {'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', ' ','b','b','b'},
     {'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', ' ','u','u','u'}};
 
@@ -125,14 +125,27 @@ public class Board {
               continue;
             }
           }
+          // if Collision is not nothing and not T, and it's Mario and Goomba, take health off the Mario
+          if (collisionFace != ' ' && collisionFace != 'B'){
+            if (entities.get(j).getType().equals("Goomba") && characters.get(i).getType().equals("Mario")){
+              ((Mario)characters.get(i)).hurt(1);
+            }
+          }
           if (collisionFace == 'T') {
             if (entities.get(j).isCollideable()) {
+
               characters.get(i).setYVelocity(0);
               // Move character
               characters.get(i).setYPos(entYPos + 32);
             }
           } else if (collisionFace == 'B') {
             if (entities.get(j).isCollideable()) {
+              if (entities.get(j).getType().equals("Goomba") && characters.get(i).getType().equals("Mario")){
+                ((Goomba)entities.get(j)).kill();
+                ((Mario)characters.get(i)).addCoin();
+                entities.remove(j);
+                j--;
+              }
               characters.get(i).setGrounded(true);
               characters.get(i).setYVelocity(0);
               // Move character
@@ -140,14 +153,20 @@ public class Board {
             }
           } else if (collisionFace == 'L') {
             if (entities.get(j).isCollideable()) {
-              characters.get(i).setXVelocity(0);
+              //characters.get(i).setXVelocity(0);
               // Move character
+              if (characters.get(i).getType().equals("Goomba")){
+                characters.get(i).setXVelocity(characters.get(i).getXVelocity()*-1);
+              }
               characters.get(i).setXPos(entXPos + 32);
             }
           } else if (collisionFace == 'R') {
             if (entities.get(j).isCollideable()) {
-              characters.get(i).setXVelocity(0);
+              //characters.get(i).setXVelocity(0);
               // Move character
+              if (characters.get(i).getType().equals("Goomba") && entities.get(j).getType().equals("Block")){
+                characters.get(i).setXVelocity(characters.get(i).getXVelocity()*-1);
+              }
               characters.get(i).setXPos(entXPos - 32);
             }
           }

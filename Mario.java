@@ -1,6 +1,7 @@
 public class Mario extends Character {
   private int health;
   private int coins;
+  private String sprite = "Right";
   // eventually add more for health, coins, etc.
   /**
    * This class stores information about the player's location on the map. It has a copy constructor and has methods to retrieve and
@@ -22,6 +23,9 @@ public class Mario extends Character {
   public void setHealth(int health) {
     this.health = health;
   }
+  public void hurt(int damage){
+    this.health -= damage;
+  }
 
   public int getHealth() {
     return this.health;
@@ -41,5 +45,11 @@ public class Mario extends Character {
 
   public String getType() {
     return "Mario";
+  }
+  public String getSprite(){
+    return sprite;
+  }
+  public void setSprite(String s){
+    sprite = s;
   }
 }

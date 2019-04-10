@@ -23,6 +23,9 @@ public class Mario extends Character {
   public void setHealth(int health) {
     this.health = health;
   }
+  public void hurt(int damage){
+    this.health -= damage;
+  }
 
   public int getHealth() {
     return this.health;

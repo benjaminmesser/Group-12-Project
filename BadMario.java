@@ -156,6 +156,7 @@ public class BadMario extends Application {
     boolean first = true;
     for (int i = 0; i < b.getCharacters().size(); i++) {
       if (b.getCharacters().get(i).getType() == "Mario" && first) {
+        first = false;
         if ((input.contains("W") || input.contains("SPACE")) && b.getCharacters().get(i).isGrounded()) {
           b.getCharacters().get(i).addYVelocity(JUMP_VELOCITY);
           // change sprite here...?
@@ -182,8 +183,14 @@ public class BadMario extends Application {
           b.getCharacters().get(i).addYVelocity(JUMP_VELOCITY);
           input.remove("I");
         }
-        if (input.contains("J")) b.getCharacters().get(i).setXVelocity(-HORIZONTAL_VELOCITY);
-        if (input.contains("L")) b.getCharacters().get(i).setXVelocity(HORIZONTAL_VELOCITY);
+        if (input.contains("J")){
+          b.getCharacters().get(i).setXVelocity(-HORIZONTAL_VELOCITY);
+          ((Mario)b.getCharacters().get(i)).setSprite("Left");
+        }
+        if (input.contains("L")){
+           b.getCharacters().get(i).setXVelocity(HORIZONTAL_VELOCITY);
+           ((Mario)b.getCharacters().get(i)).setSprite("Right");
+        }
         if (!input.contains("J") && !input.contains("L")) b.getCharacters().get(i).setXVelocity(0);
       }
     }
@@ -210,6 +217,8 @@ public class BadMario extends Application {
       }
     }
   }
+
+
 
   public void updatePositions() {
     int charX;

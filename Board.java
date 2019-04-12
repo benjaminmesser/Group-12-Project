@@ -89,6 +89,14 @@ public class Board {
     return this.characters;
   }
 
+  public Entity getEntity(int i){
+    return entities.get(i-1);
+  }
+
+  public Character getCharacter(int i){
+    return characters.get(i-1);
+  }
+
   public void handleCollisions() {
     int charXPos;
     int charYPos;

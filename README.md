@@ -16,7 +16,7 @@ Before running Bad Mario, an up to date version of JRE and JDK should installed 
 # Controls
 
 
-#####Player 1
+#### Player 1
 
 
 a - move left
@@ -34,7 +34,7 @@ Use a combination of 'w'/spacebar and 'd' to jump up right
 Use a combination of 'w'/spacebar and 'a' to jump up left
 
 
-#####Player 2
+#### Player 2
 
 
 j - move left

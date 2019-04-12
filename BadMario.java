@@ -41,6 +41,7 @@ public class BadMario extends Application {
   Image goomba = new Image("sprites/goomba.png");
   Image coin = new Image("sprites/coin.png");
   Image dirt = new Image("sprites/dirt.png");
+  Image heart = new Image("sprites/heart.png");
 
   Image background = new Image("sprites/background.png");
 
@@ -90,6 +91,7 @@ public class BadMario extends Application {
         handleFallingOffBoard();
         b.handleCollisions();
         renderGame(gc);
+        checkAlive();
         int endFrame = (int)System.currentTimeMillis();
         try {
           try {
@@ -151,17 +153,44 @@ public class BadMario extends Application {
           break;
       }
     }
+    //boolean first = true;
+    for (int i = 0; i < b.getCharacters().size(); i++) {
+      if (b.getCharacters().get(i).getType() == "Mario" && ((Mario)b.getCharacters().get(i)).getPlayer() == 1) {
+        //first = false;
+        for (int h = 0; h < ((Mario)(b.getCharacters().get(i))).getHealth(); h++){
+          gc.drawImage(heart, h * 32, 0);
+        }
+      } else if (b.getCharacters().get(i).getType() == "Mario") {
+        for (int h = 0; h < ((Mario)(b.getCharacters().get(i))).getHealth(); h++) {
+          gc.drawImage(heart, ((b.getMap()[0].length - h) * 32) - 32, 0);
+        }
+      }
+    }
   }
-	
+  public void checkAlive(){
+    boolean playersAlive = false;
+    for (int i = 0; i < b.getCharacters().size(); i++){
+      if (b.getCharacters().get(i) instanceof Mario){
+        playersAlive = true;
+      }
+    }
+    if (playersAlive == false){
+      // reset the game?
+      System.out.println("Game Over!");
+      //b.initializeMap(null);
+    }
+  }
+
  /**
  * Detects user input to move either player 1 or player 2
  * @param input arraylist of strings of user input
  */
   public void handleInput(ArrayList<String> input) {
-    boolean first = true;
+    //boolean first = true;
     for (int i = 0; i < b.getCharacters().size(); i++) {
-      if (b.getCharacters().get(i).getType() == "Mario" && first) {
-        first = false;
+      if (b.getCharacters().get(i).getType() == "Mario") {
+        //first = false;
+        if (((Mario)b.getCharacters().get(i)).getPlayer() == 1) {
         if ((input.contains("W") || input.contains("SPACE")) && b.getCharacters().get(i).isGrounded()) {
           b.getCharacters().get(i).addYVelocity(JUMP_VELOCITY);
           // change sprite here...?
@@ -183,7 +212,7 @@ public class BadMario extends Application {
            ((Mario)b.getCharacters().get(i)).setSprite("Right");
         }
         if (!input.contains("A") && !input.contains("D")) b.getCharacters().get(i).setXVelocity(0);
-      } else if (b.getCharacters().get(i).getType() == "Mario") {
+      } else {
         if (input.contains("I") && b.getCharacters().get(i).isGrounded()) {
           b.getCharacters().get(i).addYVelocity(JUMP_VELOCITY);
           input.remove("I");
@@ -198,7 +227,8 @@ public class BadMario extends Application {
         }
         if (!input.contains("J") && !input.contains("L")) b.getCharacters().get(i).setXVelocity(0);
       }
-    }
+      }
+      }
   }
 
   public void handleGravity() {
@@ -222,7 +252,7 @@ public class BadMario extends Application {
       }
     }
   }
-	
+
   public void updatePositions() {
     int charX;
     int charY;
@@ -251,24 +281,25 @@ public class BadMario extends Application {
       }
     }
   }
-	
+
  /**
  * This method deals when either one of the Mario's falls into the pit on the board
- * It will first "kill" the Mario by removing his health (-3) and then resets the  
- * the Mario who "fell" to their initial positions 
+ * It will first "kill" the Mario by removing his health (-3) and then resets the
+ * the Mario who "fell" to their initial positions
  * Goombas or Coins are not respawned if defeated or collected respectively
  */
   public void handleFallingOffBoard(){
     for (int i = 0; i < b.getCharacters().size(); i++) {
-	if (b.getCharacters().get(i) instanceof Mario){ 
-		Mario m = (Mario)b.getCharacters().get(i);
-		int charY = b.getCharacters().get(i).getYPos();
-		if(charY == 224){
-			m.setHealth(0);
-			((Character) m).setXPos(m.getStartPositionX());
-			((Character) m).setYPos(m.getStartPositionY());
-			m.setHealth(3);	}	
-			}
-		}
-  	}
+	     if (b.getCharacters().get(i) instanceof Mario){
+		       Mario m = (Mario)b.getCharacters().get(i);
+		       int charY = b.getCharacters().get(i).getYPos();
+		       if(charY >= (b.getMap().length * 32) - 32){
+	            m.setHealth(0);
+			        ((Character) m).setXPos(m.getStartPositionX());
+			        ((Character) m).setYPos(m.getStartPositionY());
+			        m.setHealth(3);
+            }
+          }
+        }
+      }
 }

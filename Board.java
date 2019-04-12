@@ -8,14 +8,18 @@ public class Board {
   private ArrayList<Character> characters = new ArrayList<Character>();
   private ArrayList<Entity> entities = new ArrayList<Entity>();
   private final char[][] DEFAULT_MAP = new char[][] {
-    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'c', 'c', 'c', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' '},
-    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' '},
-    {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'c', 'c', ' ', ' ', ' ', ' ', ' ', ' ', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' '},
-    {' ', ' ', ' ', 'c', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', 'c', 'c', 'c', ' ', ' ', ' ',' ',' ',' '},
-    {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', ' ', ' ', ' ', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' '},
-    {' ', 'd', 'x', ' ', ' ', 'g', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', 'x', 'x', 'x', ' ', ' ', ' ',' ','d',' '},
-    {'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', ' ','b','b','b'},
-    {'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', ' ','u','u','u'}};
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' '},
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' '},
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' '},
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' '},
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'c', 'c', 'c', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' '},
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' '},
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'c', 'c', ' ', ' ', ' ', ' ', ' ', ' ', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' '},
+    {' ', ' ', ' ', 'c', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', 'c', 'c', 'c', ' ', ' ', ' ',' ',' ',' ', ' '},
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', ' ', ' ', ' ', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' '},
+    {' ', 'd', 'x', ' ', ' ', 'g', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', 'x', 'x', 'x', ' ', ' ', ' ',' ','d',' ', ' '},
+    {'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', ' ','b','b','b', 'b'},
+    {'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', ' ','u','u','u', 'u'}};
 
  /**
  * @param map is setup as a character array
@@ -27,9 +31,9 @@ public class Board {
   public Board() {
     this.map = initializeMap(null);
   }
- 
+
  /**
- * The different characters/letters in the maps' character array correspond to different types of blocks 
+ * The different characters/letters in the maps' character array correspond to different types of blocks
  *  i.e. c corresponds to coin and so on to initialise the game environment/map
  * @param input if there is no user input the map is set to the default version
  * if user input is detected, it returns the updated map to reflect this
@@ -37,17 +41,22 @@ public class Board {
  */
   public char[][] initializeMap(char[][] input) {
     char[][] map;
+    characters.clear();
+    entities.clear();
     if (input == null) {
       map = DEFAULT_MAP;
     } else {
       map = input;
     }
-
+    int p = 1;
     for (int i = 0; i < map.length; i++) {
       for (int j = 0; j < map[i].length; j++) {
         switch (map[i][j]) {
           case 'd':
-            entities.add(new Mario(j*32, i*32));
+            entities.add(new Mario(j*32, i*32, p));
+            if (p == 1){
+              p = 2;
+            }
             characters.add((Character)entities.get(entities.size()-1));
             map[i][j] = ' ';
             break;
@@ -81,13 +90,12 @@ public class Board {
     }
     return map;
   }
-  
+
  /**
  * @return returns mapClone
  * which is a copy of the map.
  */
   public char[][] getMap() {
-    //returns a copy of the map.
     char[][] mapClone = new char[map.length][map[0].length];
     for (int i = 0; i < map.length; i++) {
       for (int j = 0; j < map[0].length; j++) {
@@ -113,7 +121,7 @@ public class Board {
   public Character getCharacter(int i){
     return characters.get(i-1);
   }
-  
+
  /**
  * This method handles collisions between Mario and other objects such as Goombas
  * It uses the side of the character that is touching the other object
@@ -132,6 +140,9 @@ public class Board {
     for (int i = 0; i < characters.size(); i++) {
       characters.get(i).setGrounded(false);
       for (int j = 0; j < entities.size(); j++) {
+        if (characters.size() == i){
+          break;
+        }
         if (characters.get(i) != entities.get(j)) {
           charXPos = characters.get(i).getXPos();
           charYPos = characters.get(i).getYPos();
@@ -159,12 +170,20 @@ public class Board {
             }
           }
           // if Collision is not nothing and not T, and it's Mario and Goomba, take health off the Mario
-          if (collisionFace != ' ' && collisionFace != 'B'){
-            if (entities.get(j).getType().equals("Goomba") && characters.get(i).getType().equals("Mario")){
+          if (collisionFace != ' ' && collisionFace != 'B' && entities.get(j).getType().equals("Goomba") && characters.get(i).getType().equals("Mario")){
+            //if (entities.get(j).getType().equals("Goomba") && characters.get(i).getType().equals("Mario")){
               ((Mario)characters.get(i)).hurt(1);
-            }
-          }
-          if (collisionFace == 'T') {
+              if (((Mario)characters.get(i)).getHealth() <= 0){
+                for (int e = 0; e < entities.size(); e++){
+                  if (entities.get(e).equals(characters.get(i))){
+                    characters.remove(i);
+                    entities.remove(e);
+                    break;
+                  }
+                }
+              }
+          //  }
+          } else if (collisionFace == 'T') {
             if (entities.get(j).isCollideable()) {
 
               characters.get(i).setYVelocity(0);

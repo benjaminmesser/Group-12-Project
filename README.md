@@ -2,7 +2,7 @@
 Bad Mario is a simiplified side scrolling platformer, which closely resembles Mario but with nowhere near the budget. Our current code repository showcases the final GUI version of the game coded in Java. 
 
 # Getting Started
-Download all .java files present in the master branch of our repository, extract them from the zip file downloaded and compile them from the command line. Finally, run BadMario.java from command line to run the the game.
+Download all .java files present in the master branch of our repository, extract them from the zip file downloaded. Put junit-4.12.jar and hamcrest-core-1.3.jar in this folder. Finally, compile and run BadMario.java from command line to run the the game.
 
 The command line argument below must be used to compile the classes in the repository. 
 
@@ -53,19 +53,20 @@ Use a combination of 'i' and 'j' to jump up left
 
 
 # Running Automated Tests
-junit version 4.12 hamcrest core 1.3 are used for automated testing in Bad Mario. Tests are run in the character class which test for valid contructor parameter values and getter/setter method values.
+
+Junit version 4.12 hamcrest core 1.3 are used for automated testing in Bad Mario. Use the command below to run the Test Classes provided in the Repository.
 
     java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore <Test Class>
 
 In machines operating on Windows replace the colons with semi-colons.
 
 
-Also note that "<Test Class>" should be replaced with one of the test classes provided in the repository. 
+Also note that "Test Class" should be replaced with the name of one of the test classes provided in the repository. For example; java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore BlockTest 
 
 
-If running tests are not necessary for the user; simply run the code below after compiling the files
+If running tests are not necessary for the user; simply run the code below after compiling the files. 
      
-    java BadMario
+    java BadMario 
 
 # Authors
 - Yifan Chen

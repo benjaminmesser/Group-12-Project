@@ -176,8 +176,7 @@ public class BadMario extends Application {
     }
     if (playersAlive == false){
       // reset the game?
-      System.out.println("Game Over!");
-      //b.initializeMap(null);
+      b = new Board();
     }
   }
 
@@ -282,11 +281,5 @@ public class BadMario extends Application {
     }
   }
 
- /**
- * This method deals when either one of the Mario's falls into the pit on the board
- * It will first "kill" the Mario by removing his health (-3) and then resets the
- * the Mario who "fell" to their initial positions
- * Goombas or Coins are not respawned if defeated or collected respectively
- */
 
 }

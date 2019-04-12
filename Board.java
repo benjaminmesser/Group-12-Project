@@ -31,7 +31,9 @@ public class Board {
   public Board() {
     this.map = initializeMap(null);
   }
-
+  public void restartGame(){
+    this.map = initializeMap(null);
+  }
  /**
  * The different characters/letters in the maps' character array correspond to different types of blocks
  *  i.e. c corresponds to coin and so on to initialise the game environment/map
@@ -48,6 +50,7 @@ public class Board {
     } else {
       map = input;
     }
+
     int p = 1;
     for (int i = 0; i < map.length; i++) {
       for (int j = 0; j < map[i].length; j++) {
@@ -226,6 +229,13 @@ public class Board {
       }
     }
   }
+  /**
+  * This method deals when either one of the Mario's falls into the pit on the board
+  * It will first "kill" the Mario by removing his health (-3) and then resets the
+  * the Mario who "fell" to their initial positions
+  * Goombas or Coins are not respawned if defeated or collected respectively
+  */
+
   public void handleFallingOffBoard(){
     for (int i = 0; i < characters.size(); i++) {
 	     if (characters.get(i) instanceof Mario){

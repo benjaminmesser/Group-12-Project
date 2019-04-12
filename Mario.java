@@ -2,6 +2,9 @@ public class Mario extends Character {
   private int health;
   private int coins;
   private String sprite = "Right";
+  private int startPositionX;
+  private int startPositionY;
+  
   // eventually add more for health, coins, etc.
   /**
    * This class stores information about the player's location on the map. It has a copy constructor and has methods to retrieve and
@@ -9,6 +12,8 @@ public class Mario extends Character {
   */
   public Mario(int x, int y) {
     super(x, y);
+    this.setStartPositionX(x);
+    this.setStartPositionY(y);
     setHealth(3);
     setCoins(0);
     // eventually change to automatically put player at the origin, once we find out where that is
@@ -52,4 +57,20 @@ public class Mario extends Character {
   public void setSprite(String s){
     sprite = s;
   }
+ 
+  public int getStartPositionX() {
+		return startPositionX;
+	}
+	
+	public void setStartPositionX(int startPositionX) {
+		this.startPositionX = startPositionX;
+	}
+	
+	public int getStartPositionY() {
+		return startPositionY;
+	}
+	
+	public void setStartPositionY(int startPositionY) {
+		this.startPositionY = startPositionY;
+	}
 }

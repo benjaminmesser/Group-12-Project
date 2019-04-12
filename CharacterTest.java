@@ -72,7 +72,7 @@ public class CharacterTest{
 
         @Test
         public void Mario_Test(){
-            Mario m = new Mario(1, 1);
+            Mario m = new Mario(1, 1, 1);
             assertEquals("Expected Mario to be initalized at 0 coins", 0 ,m.getCoins());
             assertEquals("Expected Mario to be initalized at 3 health", 3 ,m.getHealth());
             assertEquals("Expected Mario to be of type Mario", "Mario" ,m.getType());

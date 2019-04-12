@@ -250,21 +250,17 @@ public class BadMario extends Application {
     }
   }
   
-   public void handleFallingOffBoard() 
-   {
-	  for (int i = 0; i < b.getCharacters().size(); i++) 
-	  {
-		  if (b.getCharacters().get(i) instanceof Mario)
-      { 
-			  Mario m = (Mario)b.getCharacters().get(i);
-			  int charY = b.getCharacters().get(i).getYPos();
-			  if(charY == 224){
+    public void handleFallingOffBoard(){
+	for (int i = 0; i < b.getCharacters().size(); i++) {
+		if (b.getCharacters().get(i) instanceof Mario){ 
+			Mario m = (Mario)b.getCharacters().get(i);
+			int charY = b.getCharacters().get(i).getYPos();
+			if(charY == 224){
 				m.setHealth(0);
 				((Character) m).setXPos(m.getStartPositionX());
 				((Character) m).setYPos(m.getStartPositionY());
-				m.setHealth(3);	
-			  }	
-		  }
-	  }
-   }
+				m.setHealth(3);	}	
+		}
+	}
+  }
 }

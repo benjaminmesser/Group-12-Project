@@ -152,7 +152,11 @@ public class BadMario extends Application {
       }
     }
   }
-
+	
+ /**
+ * Detects user input to move either player 1 or player 2
+ * @param input arraylist of strings of user input
+ */
   public void handleInput(ArrayList<String> input) {
     boolean first = true;
     for (int i = 0; i < b.getCharacters().size(); i++) {
@@ -218,9 +222,7 @@ public class BadMario extends Application {
       }
     }
   }
-
-
-
+	
   public void updatePositions() {
     int charX;
     int charY;
@@ -249,18 +251,24 @@ public class BadMario extends Application {
       }
     }
   }
-  
-    public void handleFallingOffBoard(){
-	for (int i = 0; i < b.getCharacters().size(); i++) {
-		if (b.getCharacters().get(i) instanceof Mario){ 
-			Mario m = (Mario)b.getCharacters().get(i);
-			int charY = b.getCharacters().get(i).getYPos();
-			if(charY == 224){
-				m.setHealth(0);
-				((Character) m).setXPos(m.getStartPositionX());
-				((Character) m).setYPos(m.getStartPositionY());
-				m.setHealth(3);	}	
+	
+ /**
+ * This method deals when either one of the Mario's falls into the pit on the board
+ * It will first "kill" the Mario by removing his health (-3) and then resets both 
+ * Marios to their initial positions on the board regardless of which one falls
+ * Goombas or Coins are not respawned if defeated or collected respectively
+ */
+  public void handleFallingOffBoard(){
+    for (int i = 0; i < b.getCharacters().size(); i++) {
+	if (b.getCharacters().get(i) instanceof Mario){ 
+		Mario m = (Mario)b.getCharacters().get(i);
+		int charY = b.getCharacters().get(i).getYPos();
+		if(charY == 224){
+			m.setHealth(0);
+			((Character) m).setXPos(m.getStartPositionX());
+			((Character) m).setYPos(m.getStartPositionY());
+			m.setHealth(3);	}	
+			}
 		}
-	}
-  }
+  	}
 }

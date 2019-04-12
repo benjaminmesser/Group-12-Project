@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+ /**
+ * This class sets up the game environment and implements how Mario is able to interact with his environment aka map
+ */
 public class Board {
   private char[][] map;
   private ArrayList<Character> characters = new ArrayList<Character>();
@@ -14,6 +17,9 @@ public class Board {
     {'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', ' ','b','b','b'},
     {'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', ' ','u','u','u'}};
 
+ /**
+ * @param map is setup as a character array
+ */
   public Board(char[][] map) {
     this.map = initializeMap(map);
   }
@@ -21,7 +27,14 @@ public class Board {
   public Board() {
     this.map = initializeMap(null);
   }
-
+ 
+ /**
+ * The different characters/letters in the maps' character array correspond to different types of blocks 
+ *  i.e. c corresponds to coin and so on to initialise the game environment/map
+ * @param input if there is no user input the map is set to the default version
+ * if user input is detected, it returns the updated map to reflect this
+ * @return returns the map which is a character array
+ */
   public char[][] initializeMap(char[][] input) {
     char[][] map;
     if (input == null) {
@@ -68,7 +81,11 @@ public class Board {
     }
     return map;
   }
-
+  
+ /**
+ * @return returns mapClone
+ * which is a copy of the map.
+ */
   public char[][] getMap() {
     //returns a copy of the map.
     char[][] mapClone = new char[map.length][map[0].length];
@@ -96,7 +113,15 @@ public class Board {
   public Character getCharacter(int i){
     return characters.get(i-1);
   }
-
+  
+ /**
+ * This method handles collisions between Mario and other objects such as Goombas
+ * It uses the side of the character that is touching the other object
+ * where 'T' - top, 'B' - bottom, 'L' - left, 'R' - right
+ * It first finds a collision face
+ * It compare the two entities and do actions based on what face the collision is on
+ * if Collision is not nothing (not empty) and not T, and it's Mario and Goomba, take health off the Mario
+ */
   public void handleCollisions() {
     int charXPos;
     int charYPos;

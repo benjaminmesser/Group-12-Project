@@ -88,7 +88,7 @@ public class BadMario extends Application {
         handleInput(input);
         updatePositions();
         handleGravity();
-        handleFallingOffBoard();
+        b.handleFallingOffBoard();
         b.handleCollisions();
         renderGame(gc);
         checkAlive();
@@ -288,18 +288,5 @@ public class BadMario extends Application {
  * the Mario who "fell" to their initial positions
  * Goombas or Coins are not respawned if defeated or collected respectively
  */
-  public void handleFallingOffBoard(){
-    for (int i = 0; i < b.getCharacters().size(); i++) {
-	     if (b.getCharacters().get(i) instanceof Mario){
-		       Mario m = (Mario)b.getCharacters().get(i);
-		       int charY = b.getCharacters().get(i).getYPos();
-		       if(charY >= (b.getMap().length * 32) - 32){
-	            m.setHealth(0);
-			        ((Character) m).setXPos(m.getStartPositionX());
-			        ((Character) m).setYPos(m.getStartPositionY());
-			        m.setHealth(3);
-            }
-          }
-        }
-      }
+
 }

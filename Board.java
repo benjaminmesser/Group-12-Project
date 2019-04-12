@@ -226,4 +226,26 @@ public class Board {
       }
     }
   }
+  public void handleFallingOffBoard(){
+    for (int i = 0; i < characters.size(); i++) {
+	     if (characters.get(i) instanceof Mario){
+		       Mario m = (Mario)characters.get(i);
+		       int charY = characters.get(i).getYPos();
+		       if(charY >= (map.length * 32) - 32){
+	            m.hurt(1);
+			        ((Character) m).setXPos(m.getStartPositionX());
+			        ((Character) m).setYPos(m.getStartPositionY());
+              if (((Mario)characters.get(i)).getHealth() <= 0){
+                for (int e = 0; e < entities.size(); e++){
+                  if (entities.get(e).equals(characters.get(i))){
+                    characters.remove(i);
+                    entities.remove(e);
+                    break;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
 }

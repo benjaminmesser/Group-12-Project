@@ -17,6 +17,11 @@ import javafx.animation.AnimationTimer;
 import javafx.stage.Stage;
 import javafx.scene.text.Font;
 
+/**
+  * This is the central class for the game
+  * It contains most of the code pertaining to the graphics, event handling, and much of the central logic of the game
+  */
+
 public class BadMario extends Application {
   // Movement constants, feel free to change these to what you think feels the best
   // Y-Values are inverted

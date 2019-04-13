@@ -249,8 +249,6 @@ public class Board {
           //  }
           } else if (collisionFace == 'T') {
             if (entities.get(j).isCollideable()) {
-
-              characters.get(i).setYVelocity(0);
               // Move character
               characters.get(i).setYPos(entYPos + 32);
             }

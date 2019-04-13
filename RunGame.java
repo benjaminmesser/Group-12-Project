@@ -75,7 +75,7 @@ public class RunGame {
             }
           }
           else if (input == 'd'){
-            if (x + 1 <= map[0].length) {
+            if (x + 1 < map[0].length) {
               if (map[y][x+1] == ' ') {
                 map[y][x] = ' ';
                 map[y][x +1] = 'm';

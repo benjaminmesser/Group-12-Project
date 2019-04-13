@@ -176,7 +176,13 @@ public class BadMario extends Application {
       }
     }
   }
-  public void checkAlive(){
+  
+  /**
+ * This method checks if either one of the Mario's is alive
+ * If one or both of the Marios still present on the board then playersAlive returns true
+ * however if both Mario's "die", hence the game is lost; a new board is generated
+ */
+public void checkAlive(){
     boolean playersAlive = false;
     for (int i = 0; i < b.getCharacters().size(); i++){
       if (b.getCharacters().get(i) instanceof Mario){
@@ -190,7 +196,7 @@ public class BadMario extends Application {
   }
 
  /**
- * Detects user input to move either player 1 or player 2
+ * Detects user input to move either Mario 1 or Mario 2
  * @param input arraylist of strings of user input
  */
   public void handleInput(ArrayList<String> input) {
@@ -261,7 +267,10 @@ public class BadMario extends Application {
     }
   }
 
-  public void updatePositions() {
+  /**
+ * this method updates Marios position on the map
+ */
+public void updatePositions() {
     int charX;
     int charY;
     int velX;

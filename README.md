@@ -1,6 +1,8 @@
 # Group-12-Project: Bad Mario
 Bad Mario is a simiplified side scrolling platformer, which closely resembles Mario but with nowhere near the budget. Our current code repository showcases the final GUI version of the game coded in Java. 
 
+A very simple text-based version of BadMario can also be run.
+
 # Getting Started
 Download all .java files present in the master branch of our repository, extract them from the zip file downloaded. Put junit-4.12.jar and hamcrest-core-1.3.jar in this folder. Finally, compile and run BadMario.java from command line to run the the game.
 
@@ -50,6 +52,21 @@ Use a combination of 'i' and 'l' to jump up right
 
 
 Use a combination of 'i' and 'j' to jump up left
+
+
+#### Text-Based Version
+
+a - move left
+
+d - move right
+
+w - jump up vertically
+
+q - jump up and to the left
+
+e - jump up and to the right
+
+Type in the selection and hit "enter" to move the character 'm', representing Mario. This version is single-player.
 
 
 # Running Automated Tests

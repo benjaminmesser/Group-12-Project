@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
  /**
  * This class sets up the game environment and implements how Mario is able to interact with his environment aka map
+ * This class contains various game environments that Mario may interact with that are randomly generated at run time
  */
 public class Board {
   private char[][] map;
@@ -80,6 +81,8 @@ public class Board {
  * @param input if there is no user input the map is set to the default version
  * if user input is detected, it returns the updated map to reflect this
  * @return returns the map which is a character array
+ * Each time the game is run from console a different map is displayed from the character arrays above
+ * with the default map being map_0
  */
   public char[][] initializeMap(char[][] input) {
     char[][] map;
@@ -182,6 +185,10 @@ public class Board {
   public Character getCharacter(int i){
     return characters.get(i-1);
   }
+ /**
+ * Getter Method that indicates game status
+ * @return returns a boolean which is set to a default of false
+ */
   public boolean getGameStatus(){
     return this.gameOver;
   }
@@ -292,9 +299,11 @@ public class Board {
       }
     }
   }
-  /**
+   /**
   * This method determines if a win is possible once a collision with a flag is made.
-  * If there are no coins or goombas left on the map, the player wins.
+  * If there are no coins or goombas left on the map, the Mario wins.
+  * Hence all coins must be collected and goombas defeated when Mario reaches the flag in order to win
+  * When Mario wins the game is ends
   */
   public void checkWin(){
     boolean coinCheck = false;
@@ -316,7 +325,7 @@ public class Board {
   * This method deals when either one of the Mario's falls into the pit on the board
   * It will first "hurt" the Mario by removing his health (-1) and then resets the
   * the Mario who "fell" to their initial positions
-  * If the Mario's health is too low, it will be removed from the board.
+  * If the Mario's health is too low, the Mario in play will be removed from the board completely.
   */
   public void handleFallingOffBoard(){
     for (int i = 0; i < characters.size(); i++) {

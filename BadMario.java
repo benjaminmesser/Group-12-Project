@@ -116,6 +116,12 @@ public class BadMario extends Application {
     */
     stage.show();
   }
+ 
+ /**
+ * Renders the game based on the map and displays it on the screen.
+ * @param gc is the GraphicsContext of the canvas for display.
+ * It also displays if the player has won or not, and displays the health of both players.
+ */
 
   public void renderGame(GraphicsContext gc) {
     gc.clearRect(0, 0, b.getMap()[0].length*32, b.getMap().length*32);
@@ -167,10 +173,8 @@ public class BadMario extends Application {
         gc.fillText("You Win!", b.getMap()[0].length * 10, b.getMap().length * 10);
       }
     }
-    //boolean first = true;
     for (int i = 0; i < b.getCharacters().size(); i++) {
       if (b.getCharacters().get(i).getType() == "Mario" && ((Mario)b.getCharacters().get(i)).getPlayer() == 1) {
-        //first = false;
         for (int h = 0; h < ((Mario)(b.getCharacters().get(i))).getHealth(); h++){
           gc.drawImage(heart, h * 32, 0);
         }
@@ -195,7 +199,7 @@ public void checkAlive(){
       }
     }
     if (playersAlive == false){
-      // reset the game?
+      // reset the game
       b = new Board();
     }
   }
@@ -205,14 +209,12 @@ public void checkAlive(){
  * @param input arraylist of strings of user input
  */
   public void handleInput(ArrayList<String> input) {
-    //boolean first = true;
     for (int i = 0; i < b.getCharacters().size(); i++) {
       if (b.getCharacters().get(i).getType() == "Mario") {
-        //first = false;
         if (((Mario)b.getCharacters().get(i)).getPlayer() == 1) {
         if ((input.contains("W") || input.contains("SPACE")) && b.getCharacters().get(i).isGrounded()) {
           b.getCharacters().get(i).addYVelocity(JUMP_VELOCITY);
-          // change sprite here...?
+          // change sprite here
           if (((Mario)b.getCharacters().get(i)).getSprite().equals("Left")){
             ((Mario)b.getCharacters().get(i)).setSprite("JumpLeft");
           }
@@ -246,10 +248,14 @@ public void checkAlive(){
         }
         if (!input.contains("J") && !input.contains("L")) b.getCharacters().get(i).setXVelocity(0);
       }
-      }
-      }
+     }
+    }
   }
 
+  /**
+  * Handles the gravity of all moving characters.
+  * Also controls the jumping sprites of the two Mario players.
+  */
   public void handleGravity() {
     for (int i = 0; i < b.getCharacters().size(); i++) {
       if (!b.getCharacters().get(i).isGrounded()) {
@@ -273,7 +279,7 @@ public void checkAlive(){
   }
 
   /**
- * this method updates Marios position on the map
+ * This method updates Mario's position on the map
  */
 public void updatePositions() {
     int charX;

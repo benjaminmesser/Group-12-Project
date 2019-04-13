@@ -4,7 +4,7 @@ Bad Mario is a simiplified side scrolling platformer, which closely resembles Ma
 A very simple text-based version of BadMario can also be run.
 
 # Getting Started
-Download all .java files present in the master branch of our repository, extract them from the zip file downloaded. Put junit-4.12.jar and hamcrest-core-1.3.jar in this folder. Finally, compile and run BadMario.java from command line to run the the game.
+Download all .java files present in the master branch of our repository, extract them from the zip file downloaded. Put junit-4.12.jar and hamcrest-core-1.3.jar in this folder. Finally, compile and run BadMario.java from command line to run the the game. To play the text-based version of the game, compile and run RunGame.java from command line.
 
 The command line argument below must be used to compile the classes in the repository. 
 

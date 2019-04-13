@@ -15,13 +15,14 @@ import javafx.scene.Scene;
 import javafx.animation.AnimationTimer;
 import javafx.animation.AnimationTimer;
 import javafx.stage.Stage;
+import javafx.scene.text.Font;
 
 public class BadMario extends Application {
   // Movement constants, feel free to change these to what you think feels the best
   // Y-Values are inverted
   private final int HORIZONTAL_VELOCITY = 5;
   private final int JUMP_VELOCITY = -30;
-  private final int GRAVITY = 8;
+  private final int GRAVITY = 5;
   // FPS for the game's display
   private final int REFRESH_RATE = 60;
 
@@ -42,6 +43,7 @@ public class BadMario extends Application {
   Image coin = new Image("sprites/coin.png");
   Image dirt = new Image("sprites/dirt.png");
   Image heart = new Image("sprites/heart.png");
+  Image flag = new Image("sprites/flag.png");
 
   Image background = new Image("sprites/background.png");
 
@@ -146,11 +148,18 @@ public class BadMario extends Application {
         case "Goomba":
           gc.drawImage(goomba, b.getEntities().get(i).getXPos(), b.getEntities().get(i).getYPos());
           break;
+        case "Flag":
+          gc.drawImage(flag, b.getEntities().get(i).getXPos(), b.getEntities().get(i).getYPos());
+          break;
         case "Undefined":
         default:
           // Change this image to some default thing
           gc.drawImage(block, b.getEntities().get(i).getXPos(), b.getEntities().get(i).getYPos());
           break;
+      }
+      if (b.getGameStatus() == true){
+        gc.setFont(new Font(100));
+        gc.fillText("You Win!", b.getMap()[0].length * 10, b.getMap().length * 10);
       }
     }
     //boolean first = true;
@@ -167,7 +176,13 @@ public class BadMario extends Application {
       }
     }
   }
-  public void checkAlive(){
+  
+  /**
+ * This method checks if either one of the Mario's is alive
+ * If one or both of the Marios still present on the board then playersAlive returns true
+ * however if both Mario's "die", hence the game is lost; a new board is generated
+ */
+public void checkAlive(){
     boolean playersAlive = false;
     for (int i = 0; i < b.getCharacters().size(); i++){
       if (b.getCharacters().get(i) instanceof Mario){
@@ -181,7 +196,7 @@ public class BadMario extends Application {
   }
 
  /**
- * Detects user input to move either player 1 or player 2
+ * Detects user input to move either Mario 1 or Mario 2
  * @param input arraylist of strings of user input
  */
   public void handleInput(ArrayList<String> input) {
@@ -252,7 +267,10 @@ public class BadMario extends Application {
     }
   }
 
-  public void updatePositions() {
+  /**
+ * this method updates Marios position on the map
+ */
+public void updatePositions() {
     int charX;
     int charY;
     int velX;

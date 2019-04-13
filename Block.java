@@ -4,9 +4,9 @@
  */
 public class Block extends Entity {
   public String type;
-  
+
  /**
- * Constructor that sets the x and y positions of various blocks based on the board and blocks' type 
+ * Constructor that sets the x and y positions of various blocks based on the board and blocks' type
  * @param x integer for x position of a block
  * @param y integer for y position of a block
  * @param type String for type of block
@@ -15,7 +15,7 @@ public class Block extends Entity {
     super(x, y);
     setType(type);
   }
-  
+
  /**
  * This methods sets the type of block. Coins are set to be non collideable so Mario is able to collect them.
  * @param t String that is used to directly set the type of block
@@ -28,6 +28,7 @@ public class Block extends Entity {
       case "Grass":
       case "Block":
       case "QuestionBlock":
+      case "Flag":
         this.type = t;
         break;
       default:

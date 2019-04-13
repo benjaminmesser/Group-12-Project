@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
  /**
  * This class sets up the game environment and implements how Mario is able to interact with his environment aka map
+ * This class contains various game environments that Mario may interact with that are randomly generated at run time
  */
 public class Board {
   private char[][] map;
@@ -9,6 +10,7 @@ public class Board {
   private ArrayList<Entity> entities = new ArrayList<Entity>();
   private int mapType = 0;
   private boolean gameOver = false;
+	
   private final char[][] DEFAULT_MAP_0 = new char[][] {
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' ', ' ', ' ', ' ', ' ', ' '},
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -27,6 +29,7 @@ public class Board {
     {' ', 'd', 'x', ' ', ' ', 'g', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', ' ', ' ', ' ',' ','x','x', 'x', ' ', ' ', ' ', 'd', ' '},
     {'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b','b','b','b', 'b', 'b', 'b', 'b', 'b', 'b'},
     {'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u','u','u','u', 'u', 'u', 'u', 'u', 'u', 'u'}};
+	
   private final char[][] DEFAULT_MAP_1 = new char[][] {
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' ', ' ', ' ', ' ', ' ', ' '},
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -45,6 +48,7 @@ public class Board {
     {' ', 'd', 'x', ' ', ' ', 'g', 'x', 'x', 'x', 'x', ' ', 'x', 'x', 'x', 'x', 'x', 'x', 'f', ' ', 'x', 'x', 'x', 'x', 'x', ' ', ' ', ' ',' ','x','x', ' ', 'g', 'x', ' ', 'd', ' '},
     {'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', ' ','b','b','b', 'b', 'b', 'b', 'b', 'b', 'b'},
     {'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', ' ','u','u','u', 'u', 'u', 'u', 'u', 'u', 'u'}};
+	
   private final char[][] DEFAULT_MAP_2 = new char[][] {
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' ', ' ', ' ', ' ', ' ', ' '},
     {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',' ',' ',' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -64,6 +68,7 @@ public class Board {
     {' ', 'd', ' ', ' ', ' ', ' ', 'x', 'g', ' ', 'x', 'x', 'x', 'g', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x', 'x', ' ','x','g',' ', ' ', ' ', ' ', 'x', 'd', ' '},
     {'b', 'b', 'b', 'b', ' ', ' ', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', ' ','b','b','b', 'b', 'b', 'b', 'b', 'b', 'b'},
     {'u', 'u', 'u', 'u', ' ', ' ', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', 'u', ' ','u','u','u', 'u', 'u', 'u', 'u', 'u', 'u'}};
+
  /**
  * @param map is setup as a character array
  */
@@ -74,12 +79,14 @@ public class Board {
   public Board() {
     this.map = initializeMap(null);
   }
- /**
+  /**
  * The different characters/letters in the maps' character array correspond to different types of blocks
  *  i.e. c corresponds to coin and so on to initialise the game environment/map
  * @param input if there is no user input the map is set to the default version
  * if user input is detected, it returns the updated map to reflect this
  * @return returns the map which is a character array
+ * Each time the game is run from console a different map is displayed from the character arrays above
+ * with the default map being map_0
  */
   public char[][] initializeMap(char[][] input) {
     char[][] map;
@@ -179,6 +186,11 @@ public class Board {
   public Character getCharacter(int i){
     return characters.get(i-1);
   }
+	
+ /**
+ * Getter Method that indicates game status
+ * @return returns a boolean which is set to a default of false
+ */
   public boolean getGameStatus(){
     return this.gameOver;
   }
@@ -196,8 +208,7 @@ public class Board {
     int charYPos;
     int entXPos;
     int entYPos;
-    // The side of the character that is touching the other object
-    char collisionFace = ' '; // 'T' - top, 'B' - bottom, 'L' - left, 'R' - right
+    char collisionFace = ' '; 
     for (int i = 0; i < characters.size(); i++) {
       characters.get(i).setGrounded(false);
       for (int j = 0; j < entities.size(); j++) {
@@ -221,7 +232,6 @@ public class Board {
           } else {
             collisionFace = ' ';
           }
-          // Compare the two entities and do actions based on what face the collision is on
           if (collisionFace != ' ') {
             if (entities.get(j).getType() == "Coin" && characters.get(i).getType() == "Mario") {
               entities.remove(j);
@@ -233,7 +243,6 @@ public class Board {
               checkWin();
             }
           }
-          // if Collision is not nothing and not T, and it's Mario and Goomba, take health off the Mario
           if (collisionFace != ' ' && collisionFace != 'B' && entities.get(j).getType().equals("Goomba") && characters.get(i).getType().equals("Mario")){
             //if (entities.get(j).getType().equals("Goomba") && characters.get(i).getType().equals("Mario")){
               ((Mario)characters.get(i)).hurt(1);
@@ -288,10 +297,12 @@ public class Board {
       }
     }
   }
-  /**
-  * This method determines if a win is possible once a collision with a flag is made.
-  * If there are no coins or goombas left on the map, the player wins.
-  */
+ /**
+ * This method determines if a win is possible once a collision with a flag is made.
+ * If there are no coins or goombas left on the map, the Mario wins.
+ * Hence all coins must be collected and goombas defeated when Mario reaches the flag in order to win
+ * When Mario wins the game is ends
+ */
   public void checkWin(){
     boolean coinCheck = false;
     boolean goombaCheck = false;
@@ -312,7 +323,7 @@ public class Board {
   * This method deals when either one of the Mario's falls into the pit on the board
   * It will first "hurt" the Mario by removing his health (-1) and then resets the
   * the Mario who "fell" to their initial positions
-  * If the Mario's health is too low, it will be removed from the board.
+  * If the Mario's health is too low, the Mario in play will be removed from the board completely.
   */
   public void handleFallingOffBoard(){
     for (int i = 0; i < characters.size(); i++) {
